@@ -159,6 +159,143 @@
       border-top: 1px solid rgba(21, 21, 21, 0.08); display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap;
     }
 
+
+    /* V2 UI: secciones más aireadas y layout menos comprimido */
+    .section {
+      margin-top: 132px;
+      padding-top: 6px;
+    }
+
+    .section + .section {
+      margin-top: 142px;
+    }
+
+    .section-head {
+      margin-bottom: 42px;
+    }
+
+    .steps {
+      gap: 24px;
+    }
+
+    .step, .card {
+      padding: 28px;
+      border-radius: 28px;
+    }
+
+    .grid-3,
+    .grid-2 {
+      gap: 24px;
+    }
+
+    /* Cards con ilustraciones vectoriales coherentes, sin imágenes generadas por IA */
+    .visual-card {
+      position: relative;
+      min-height: 300px;
+      overflow: hidden;
+    }
+
+    .visual-card h3,
+    .visual-card p,
+    .visual-card .tag-list {
+      position: relative;
+      z-index: 2;
+      max-width: 64%;
+    }
+
+    .illustration {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 42%;
+      height: 78%;
+      z-index: 1;
+      opacity: 0.98;
+    }
+
+    .illustration svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .illustration-bg {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      right: -54px;
+      bottom: -38px;
+      background: rgba(63, 103, 72, 0.10);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .community-illo .illustration-bg {
+      background: rgba(201, 71, 47, 0.08);
+    }
+
+    .participation-illo .illustration-bg {
+      background: rgba(216, 163, 49, 0.12);
+    }
+
+    .wide-about {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 32px;
+      align-items: center;
+      background: rgba(251, 247, 239, 0.78);
+      border: 1px solid rgba(21, 21, 21, 0.08);
+      border-radius: 32px;
+      padding: 34px;
+      overflow: hidden;
+    }
+
+    .about-illustration {
+      min-height: 280px;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 18% 24%, rgba(216,163,49,0.35) 0 34px, transparent 35px),
+        radial-gradient(circle at 82% 76%, rgba(63,103,72,0.18) 0 120px, transparent 121px),
+        rgba(255,250,242,0.55);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-illustration svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .price-card {
+      min-height: 300px;
+    }
+
+    @media (max-width: 980px) {
+      .section,
+      .section + .section {
+        margin-top: 92px;
+      }
+
+      .visual-card h3,
+      .visual-card p,
+      .visual-card .tag-list {
+        max-width: 100%;
+      }
+
+      .illustration {
+        position: relative;
+        width: 100%;
+        height: 180px;
+        margin-top: 18px;
+      }
+
+      .wide-about {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 980px) {
       nav { display: none; }
       .hero { grid-template-columns: 1fr; }
@@ -199,7 +336,7 @@
 
         <div class="nav-actions">
           <a class="small-link" href="#demo">Demo</a>
-          <a class="btn primary" href="#demo">Registrarme</a>
+          <a class="btn primary" href="#demo">¡Quiero sumarme!</a>
         </div>
       </header>
 
@@ -213,8 +350,8 @@
           </p>
 
           <div class="actions">
-            <a class="btn primary" href="https://LINK-AL-VIDEO-DE-CODER" target="_blank" rel="noopener">Ver video demo</a>
-            <a class="btn secondary" href="#como-funciona">Ver cómo funciona</a>
+            <a class="btn primary" href="#demo">¡Quiero sumarme!</a>
+            <a class="btn secondary" href="https://LINK-AL-VIDEO-DE-CODER" target="_blank" rel="noopener">Ver video demo</a>
           </div>
 
           <div class="audience-row">
@@ -239,12 +376,12 @@
         <aside class="form-card" aria-label="Formulario de demo">
           <form class="form-content" id="juntos-form">
             <div class="switch" role="tablist" aria-label="Tipo de usuario">
-              <button class="active" type="button" id="person-tab">👤 Soy una persona</button>
+              <button class="active" type="button" id="person-tab">🧭 Soy un explorador</button>
               <button type="button" id="entity-tab">🏛️ Soy una entidad</button>
             </div>
 
             <p class="form-help person-copy">
-              Contanos qué actividad buscás y detectamos personas compatibles cerca tuyo.
+              Completá solo 4 datos y te mostramos las opciones que buscás.
             </p>
             <p class="form-help entity-only">
               Relevá demanda estimada de tu comunidad, club, municipio o sociedad de fomento.
@@ -353,25 +490,64 @@
         </div>
 
         <div class="grid-3">
-          <div class="card">
+          <div class="card visual-card activity-illo">
             <h3>Fitness y entrenamiento</h3>
             <p>Gimnasios, funcional, CrossFit, boxeo, natación y actividades de fuerza.</p>
             <div class="tag-list">
               <span class="tag">Gimnasio</span><span class="tag">Funcional</span><span class="tag">Boxeo</span>
+            
+            <div class="illustration-bg"></div>
+            <div class="illustration" aria-hidden="true">
+              <svg viewBox="0 0 180 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="94" cy="38" r="17" fill="#C9472F"/>
+                <path d="M91 58 C77 78, 70 103, 72 132" stroke="#3F6748" stroke-width="13" stroke-linecap="round"/>
+                <path d="M78 92 C52 104, 37 121, 28 146" stroke="#3F6748" stroke-width="11" stroke-linecap="round"/>
+                <path d="M91 96 C115 113, 132 133, 146 158" stroke="#3F6748" stroke-width="11" stroke-linecap="round"/>
+                <path d="M73 132 C56 158, 47 180, 42 203" stroke="#1F5A7A" stroke-width="13" stroke-linecap="round"/>
+                <path d="M74 132 C99 151, 118 171, 135 199" stroke="#1F5A7A" stroke-width="13" stroke-linecap="round"/>
+                <path d="M35 207 H145" stroke="#151515" stroke-width="4" stroke-linecap="round" opacity=".28"/>
+                <path d="M124 28 C139 20, 151 21, 163 29" stroke="#D8A331" stroke-width="8" stroke-linecap="round"/>
+              </svg>
             </div>
           </div>
-          <div class="card">
+          <div class="card visual-card activity-illo">
             <h3>Bienestar y movimiento</h3>
             <p>Pilates, yoga, danza, movilidad y actividades de bajo impacto.</p>
             <div class="tag-list">
               <span class="tag">Pilates</span><span class="tag">Yoga</span><span class="tag">Danza</span>
+            
+            <div class="illustration-bg"></div>
+            <div class="illustration" aria-hidden="true">
+              <svg viewBox="0 0 180 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="94" cy="38" r="17" fill="#C9472F"/>
+                <path d="M91 58 C77 78, 70 103, 72 132" stroke="#3F6748" stroke-width="13" stroke-linecap="round"/>
+                <path d="M78 92 C52 104, 37 121, 28 146" stroke="#3F6748" stroke-width="11" stroke-linecap="round"/>
+                <path d="M91 96 C115 113, 132 133, 146 158" stroke="#3F6748" stroke-width="11" stroke-linecap="round"/>
+                <path d="M73 132 C56 158, 47 180, 42 203" stroke="#1F5A7A" stroke-width="13" stroke-linecap="round"/>
+                <path d="M74 132 C99 151, 118 171, 135 199" stroke="#1F5A7A" stroke-width="13" stroke-linecap="round"/>
+                <path d="M35 207 H145" stroke="#151515" stroke-width="4" stroke-linecap="round" opacity=".28"/>
+                <path d="M124 28 C139 20, 151 21, 163 29" stroke="#D8A331" stroke-width="8" stroke-linecap="round"/>
+              </svg>
             </div>
           </div>
-          <div class="card">
+          <div class="card visual-card community-illo">
             <h3>Actividades comunitarias</h3>
             <p>Propuestas impulsadas por clubes, municipios, sociedades de fomento y universidades.</p>
             <div class="tag-list">
               <span class="tag">Barrio</span><span class="tag">Club</span><span class="tag">Comunidad</span>
+            
+            <div class="illustration-bg"></div>
+            <div class="illustration" aria-hidden="true">
+              <svg viewBox="0 0 210 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="62" cy="68" r="15" fill="#D8A331"/>
+                <circle cx="105" cy="55" r="16" fill="#C9472F"/>
+                <circle cx="148" cy="70" r="15" fill="#1F5A7A"/>
+                <path d="M44 103 C48 86, 76 86, 81 103 L86 154 H39 L44 103Z" fill="#3F6748"/>
+                <path d="M88 93 C93 74, 118 74, 124 93 L133 160 H78 L88 93Z" fill="#C9472F"/>
+                <path d="M132 105 C137 88, 164 89, 169 105 L175 154 H126 L132 105Z" fill="#3F6748"/>
+                <path d="M80 122 C98 138, 116 138, 133 122" stroke="#F7F2E8" stroke-width="8" stroke-linecap="round"/>
+                <path d="M36 162 H179" stroke="#151515" stroke-width="4" stroke-linecap="round" opacity=".24"/>
+              </svg>
             </div>
           </div>
         </div>
@@ -438,10 +614,35 @@
       </section>
 
       <section class="section" id="nosotros">
-        <div class="section-head">
-          <h2>Nosotros</h2>
-          <p>Creemos que el bienestar no debería depender únicamente de trabajar en una gran empresa.
-JUNTOS nace para acercar actividades de Wellness a personas, barrios y comunidades, usando tecnología para ordenar la demanda y crear mejores oportunidades de acceso.</p>
+        <div class="wide-about">
+          <div>
+            <div class="section-head" style="margin-bottom:0;">
+              <h2>Nosotros</h2>
+              <p>
+                Creemos que el bienestar no debería depender únicamente de trabajar en una gran empresa.
+                JUNTOS nace para acercar actividades de Wellness a personas, barrios y comunidades, usando tecnología
+                para ordenar la demanda y crear mejores oportunidades de acceso.
+              </p>
+            </div>
+          </div>
+
+          <div class="about-illustration" aria-hidden="true">
+            <svg viewBox="0 0 520 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="28" y="72" width="66" height="158" rx="6" fill="#D8A331" opacity=".22"/>
+              <rect x="386" y="46" width="78" height="186" rx="6" fill="#1F5A7A" opacity=".13"/>
+              <circle cx="118" cy="122" r="22" fill="#D8A331"/>
+              <circle cx="204" cy="94" r="24" fill="#C9472F"/>
+              <circle cx="298" cy="108" r="24" fill="#3F6748"/>
+              <circle cx="382" cy="126" r="22" fill="#1F5A7A"/>
+              <path d="M82 184 C88 150, 146 150, 152 184 L162 258 H72 L82 184Z" fill="#3F6748"/>
+              <path d="M166 165 C174 126, 232 126, 240 165 L252 262 H152 L166 165Z" fill="#C9472F"/>
+              <path d="M260 174 C268 136, 326 136, 334 174 L344 262 H248 L260 174Z" fill="#D8A331"/>
+              <path d="M348 190 C354 154, 412 154, 418 190 L428 258 H338 L348 190Z" fill="#3F6748"/>
+              <path d="M146 192 C176 214, 214 214, 252 190" stroke="#F7F2E8" stroke-width="12" stroke-linecap="round"/>
+              <path d="M252 196 C282 216, 314 216, 348 196" stroke="#F7F2E8" stroke-width="12" stroke-linecap="round"/>
+              <path d="M54 264 H452" stroke="#151515" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+            </svg>
+          </div>
         </div>
       </section>
 

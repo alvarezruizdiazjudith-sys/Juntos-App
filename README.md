@@ -4,7 +4,7 @@ Juntos es un MVP que conecta personas, grupos y comunidades con propuestas de We
 
 ## Qué hace
 
-1. La persona o entidad completa un formulario en la landing.
+1. La explorador o entidad completa un formulario en la landing.
 2. La landing envía los datos a un Webhook de n8n Cloud.
 3. n8n normaliza la información, busca compatibilidad, guarda el registro en Google Sheets y responde con JSON.
 4. La web muestra una página de resultados personalizada con opciones ficticias para la demo.
@@ -47,3 +47,11 @@ https://LINK-AL-VIDEO-DE-CODER
 ```
 
 por el enlace real al video demo de CoderCup cuando esté grabado.
+
+
+## Cambios UI v2
+
+- Formulario: “Soy un explorador”.
+- CTA principal: “¡Quiero sumarme!”.
+- Secciones con más aire y distribución vertical.
+- Ilustraciones vectoriales propias, sin fotos ni imágenes generadas con cuerpos incoherentes.
