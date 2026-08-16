@@ -509,6 +509,26 @@
       box-shadow: var(--soft-shadow);
     }
 
+    .feature-card::after {
+      content: "";
+      position: absolute;
+      right: -58px;
+      bottom: -70px;
+      width: 235px;
+      height: 235px;
+      border-radius: 50%;
+      background: rgba(36, 79, 53, 0.08);
+      z-index: 0;
+    }
+
+    .feature-card:nth-child(2)::after {
+      background: rgba(201, 71, 47, 0.07);
+    }
+
+    .feature-card:nth-child(3)::after {
+      background: rgba(216, 163, 49, 0.12);
+    }
+
     .feature-card h3 {
       position: relative;
       z-index: 2;
@@ -543,26 +563,20 @@
 
     .illo {
       position: absolute;
-      right: -4px;
-      bottom: -4px;
-      width: 54%;
-      height: 68%;
+      right: -10px;
+      bottom: -10px;
+      width: 58%;
+      height: 72%;
       z-index: 1;
     }
 
-    .illo-bg {
-      position: absolute;
-      right: -36px;
-      bottom: -48px;
-      width: 210px;
-      height: 210px;
-      border-radius: 50%;
-      background: rgba(36,79,53,0.10);
-      z-index: 0;
+    .illo svg {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
 
-    .feature-card:nth-child(2) .illo-bg { background: rgba(201,71,47,0.08); }
-    .feature-card:nth-child(3) .illo-bg { background: rgba(216,163,49,0.12); }
+    .illo-bg { display: none; }
 
     .pricing-row {
       display: grid;
@@ -921,60 +935,63 @@
       <section class="section" id="actividades">
         <div class="feature-grid">
           <article class="feature-card">
-            <div class="illo-bg"></div>
             <h3>Actividades</h3>
             <p>Desde yoga hasta boxeo, podés hacer actividades solo en tu barrio o a la salida de tu trabajo</p>
             <a class="feature-link" href="#demo">Ver más →</a>
             <div class="illo" aria-hidden="true">
-              <svg viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="164" cy="58" r="17" fill="#C9472F"/>
-                <path d="M154 78 C139 102, 134 124, 142 154" stroke="#244F35" stroke-width="18" stroke-linecap="round"/>
-                <path d="M146 111 C120 124, 102 145, 88 176" stroke="#244F35" stroke-width="15" stroke-linecap="round"/>
-                <path d="M154 110 C183 124, 201 142, 216 167" stroke="#244F35" stroke-width="15" stroke-linecap="round"/>
-                <path d="M142 154 C119 182, 104 208, 96 238" stroke="#1F5A7A" stroke-width="17" stroke-linecap="round"/>
-                <path d="M143 154 C170 181, 190 206, 208 238" stroke="#1F5A7A" stroke-width="17" stroke-linecap="round"/>
-                <path d="M52 242H226" stroke="#151515" stroke-width="5" stroke-linecap="round" opacity=".22"/>
-                <path d="M195 43C208 34 221 34 234 43" stroke="#D8A331" stroke-width="9" stroke-linecap="round"/>
+              <svg viewBox="0 0 300 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="220" cy="64" r="20" fill="#E6BD77" opacity=".7"/>
+                <path d="M126 220 C150 178, 172 151, 196 115" stroke="#244F35" stroke-width="18" stroke-linecap="round"/>
+                <path d="M126 220 C96 206, 74 190, 58 164" stroke="#244F35" stroke-width="18" stroke-linecap="round"/>
+                <path d="M195 114 C174 99, 151 94, 128 101" stroke="#244F35" stroke-width="18" stroke-linecap="round"/>
+                <path d="M196 114 C220 136, 236 158, 247 183" stroke="#244F35" stroke-width="15" stroke-linecap="round"/>
+                <path d="M128 101 C115 128, 102 152, 84 176" stroke="#C9472F" stroke-width="17" stroke-linecap="round"/>
+                <circle cx="204" cy="88" r="17" fill="#A85F42"/>
+                <path d="M216 81 C230 78, 240 84, 244 96" stroke="#244F35" stroke-width="8" stroke-linecap="round"/>
+                <path d="M58 224 H260" stroke="#151515" stroke-width="5" opacity=".18" stroke-linecap="round"/>
+                <path d="M250 190 C264 170, 278 160, 292 158" stroke="#244F35" stroke-width="7" stroke-linecap="round" opacity=".7"/>
+                <path d="M260 205 C274 190, 288 184, 298 183" stroke="#244F35" stroke-width="7" stroke-linecap="round" opacity=".55"/>
               </svg>
             </div>
           </article>
 
           <article class="feature-card" id="comunidades">
-            <div class="illo-bg"></div>
             <h3>Comunidades</h3>
             <p>Juntos no es solo una herramienta para personas: también ayudamos a diferentes asociaciones a llevar actividades de Wellness a su comunidad</p>
             <a class="feature-link" href="#demo">Ver más →</a>
             <div class="illo" aria-hidden="true">
-              <svg viewBox="0 0 280 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="86" cy="82" r="18" fill="#D8A331"/>
-                <circle cx="140" cy="68" r="20" fill="#C9472F"/>
-                <circle cx="194" cy="84" r="18" fill="#1F5A7A"/>
-                <path d="M60 126 C66 103, 105 103, 111 126 L118 211H50L60 126Z" fill="#244F35"/>
-                <path d="M110 112 C118 84, 162 84, 171 112 L183 222H98L110 112Z" fill="#C9472F"/>
-                <path d="M170 130 C176 106, 215 106, 222 130 L230 211H161L170 130Z" fill="#244F35"/>
-                <path d="M112 150 C136 170, 163 170, 185 150" stroke="#F7F2E8" stroke-width="11" stroke-linecap="round"/>
-                <path d="M44 224H236" stroke="#151515" stroke-width="5" stroke-linecap="round" opacity=".22"/>
-                <circle cx="232" cy="50" r="20" fill="#D8A331" opacity=".65"/>
+              <svg viewBox="0 0 320 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="246" cy="42" r="22" fill="#E6BD77" opacity=".75"/>
+                <circle cx="88" cy="88" r="18" fill="#A85F42"/>
+                <circle cx="158" cy="70" r="20" fill="#C9472F"/>
+                <circle cx="228" cy="92" r="18" fill="#151515"/>
+                <path d="M64 132 C70 104, 110 104, 118 132 L126 226 H52 L64 132Z" fill="#244F35"/>
+                <path d="M126 115 C136 82, 184 82, 194 115 L206 235 H112 L126 115Z" fill="#D87444"/>
+                <path d="M200 136 C208 108, 248 108, 256 136 L266 226 H190 L200 136Z" fill="#244F35"/>
+                <path d="M113 150 C140 173, 170 173, 202 150" stroke="#F7F2E8" stroke-width="13" stroke-linecap="round"/>
+                <path d="M196 155 C215 170, 232 170, 252 154" stroke="#F7F2E8" stroke-width="11" stroke-linecap="round"/>
+                <path d="M42 232 H278" stroke="#151515" stroke-width="5" opacity=".18" stroke-linecap="round"/>
+                <path d="M38 207 C29 181, 26 158, 36 132" stroke="#244F35" stroke-width="7" stroke-linecap="round" opacity=".55"/>
+                <path d="M286 208 C300 188, 306 166, 304 140" stroke="#244F35" stroke-width="7" stroke-linecap="round" opacity=".55"/>
               </svg>
             </div>
           </article>
 
           <article class="feature-card">
-            <div class="illo-bg"></div>
             <h3>Formas de participar</h3>
             <p>Distintas formas de sumarte según el tamaño de tu grupo o comunidad.</p>
             <a class="feature-link" href="#precios">Ver más →</a>
             <div class="illo" aria-hidden="true">
-              <svg viewBox="0 0 280 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M74 190V109" stroke="#244F35" stroke-width="18" stroke-linecap="round"/>
-                <path d="M122 190V82" stroke="#D8A331" stroke-width="18" stroke-linecap="round"/>
-                <path d="M170 190V126" stroke="#C9472F" stroke-width="18" stroke-linecap="round"/>
-                <path d="M218 190V96" stroke="#1F5A7A" stroke-width="18" stroke-linecap="round"/>
-                <circle cx="74" cy="92" r="14" fill="#244F35"/>
-                <circle cx="122" cy="65" r="14" fill="#D8A331"/>
-                <circle cx="170" cy="109" r="14" fill="#C9472F"/>
-                <circle cx="218" cy="79" r="14" fill="#1F5A7A"/>
-                <path d="M45 205H235" stroke="#151515" stroke-width="5" stroke-linecap="round" opacity=".22"/>
+              <svg viewBox="0 0 320 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M62 226 C62 170, 92 132, 132 120" stroke="#244F35" stroke-width="18" stroke-linecap="round"/>
+                <path d="M150 226 C150 162, 178 120, 216 96" stroke="#D8A331" stroke-width="18" stroke-linecap="round"/>
+                <path d="M238 226 C238 182, 254 148, 284 124" stroke="#C9472F" stroke-width="18" stroke-linecap="round"/>
+                <circle cx="132" cy="120" r="20" fill="#244F35"/>
+                <circle cx="216" cy="96" r="20" fill="#D8A331"/>
+                <circle cx="284" cy="124" r="20" fill="#C9472F"/>
+                <path d="M42 232 H292" stroke="#151515" stroke-width="5" opacity=".18" stroke-linecap="round"/>
+                <path d="M80 78 C108 50, 154 46, 186 70" stroke="#244F35" stroke-width="7" stroke-linecap="round" opacity=".25"/>
+                <path d="M115 52 L124 82 L94 74" fill="#244F35" opacity=".28"/>
               </svg>
             </div>
           </article>
@@ -1050,20 +1067,24 @@
           </div>
 
           <div class="about-illo" aria-hidden="true">
-            <svg viewBox="0 0 520 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="30" y="75" width="68" height="165" rx="6" fill="#D8A331" opacity=".20"/>
-              <rect x="392" y="46" width="84" height="196" rx="6" fill="#1F5A7A" opacity=".12"/>
-              <circle cx="128" cy="124" r="22" fill="#D8A331"/>
-              <circle cx="210" cy="96" r="24" fill="#C9472F"/>
-              <circle cx="304" cy="110" r="24" fill="#244F35"/>
-              <circle cx="390" cy="130" r="22" fill="#1F5A7A"/>
-              <path d="M92 188 C98 152, 154 152, 160 188 L170 270H82L92 188Z" fill="#244F35"/>
-              <path d="M172 168 C180 128, 238 128, 248 168 L260 276H156L172 168Z" fill="#C9472F"/>
-              <path d="M264 178 C272 138, 330 138, 340 178 L350 276H250L264 178Z" fill="#D8A331"/>
-              <path d="M356 194 C362 156, 420 156, 426 194 L436 270H346L356 194Z" fill="#244F35"/>
-              <path d="M154 194 C184 216, 222 216, 260 194" stroke="#F7F2E8" stroke-width="13" stroke-linecap="round"/>
-              <path d="M260 200 C290 220, 322 220, 356 200" stroke="#F7F2E8" stroke-width="13" stroke-linecap="round"/>
-              <path d="M58 278H462" stroke="#151515" stroke-width="5" stroke-linecap="round" opacity=".18"/>
+            <svg viewBox="0 0 560 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="458" cy="182" r="146" fill="#244F35" opacity=".18"/>
+              <circle cx="145" cy="70" r="24" fill="#D8A331" opacity=".85"/>
+              <rect x="48" y="86" width="82" height="176" rx="8" fill="#1F5A7A" opacity=".11"/>
+              <rect x="410" y="58" width="90" height="204" rx="8" fill="#D8A331" opacity=".12"/>
+              <circle cx="138" cy="138" r="22" fill="#A85F42"/>
+              <circle cx="236" cy="104" r="24" fill="#C9472F"/>
+              <circle cx="342" cy="126" r="24" fill="#151515"/>
+              <circle cx="438" cy="150" r="22" fill="#A85F42"/>
+              <path d="M96 206 C104 166, 168 166, 176 206 L186 310 H84 L96 206Z" fill="#244F35"/>
+              <path d="M188 178 C198 136, 276 136, 286 178 L300 320 H174 L188 178Z" fill="#D87444"/>
+              <path d="M304 198 C314 156, 386 156, 396 198 L408 320 H292 L304 198Z" fill="#F2D8AE"/>
+              <path d="M402 218 C410 178, 478 178, 486 218 L496 310 H390 L402 218Z" fill="#244F35"/>
+              <path d="M174 206 C214 238, 254 238, 302 204" stroke="#F7F2E8" stroke-width="15" stroke-linecap="round"/>
+              <path d="M300 212 C340 240, 376 240, 414 214" stroke="#F7F2E8" stroke-width="15" stroke-linecap="round"/>
+              <path d="M88 314 H500" stroke="#151515" stroke-width="5" stroke-linecap="round" opacity=".16"/>
+              <path d="M500 238 C524 212, 536 180, 532 146" stroke="#244F35" stroke-width="9" stroke-linecap="round" opacity=".35"/>
+              <path d="M518 262 C540 246, 552 222, 556 198" stroke="#244F35" stroke-width="9" stroke-linecap="round" opacity=".25"/>
             </svg>
           </div>
         </article>
