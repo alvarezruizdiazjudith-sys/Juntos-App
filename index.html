@@ -509,26 +509,6 @@
       box-shadow: var(--soft-shadow);
     }
 
-    .feature-card::after {
-      content: "";
-      position: absolute;
-      right: -58px;
-      bottom: -70px;
-      width: 235px;
-      height: 235px;
-      border-radius: 50%;
-      background: rgba(36, 79, 53, 0.08);
-      z-index: 0;
-    }
-
-    .feature-card:nth-child(2)::after {
-      background: rgba(201, 71, 47, 0.07);
-    }
-
-    .feature-card:nth-child(3)::after {
-      background: rgba(216, 163, 49, 0.12);
-    }
-
     .feature-card h3 {
       position: relative;
       z-index: 2;
@@ -577,6 +557,21 @@
     }
 
     .illo-bg { display: none; }
+
+    .feature-card::after {
+      content: "";
+      position: absolute;
+      right: -58px;
+      bottom: -70px;
+      width: 235px;
+      height: 235px;
+      border-radius: 50%;
+      background: rgba(36, 79, 53, 0.08);
+      z-index: 0;
+    }
+
+    .feature-card:nth-child(2)::after { background: rgba(201, 71, 47, 0.07); }
+    .feature-card:nth-child(3)::after { background: rgba(216, 163, 49, 0.12); }
 
     .pricing-row {
       display: grid;
@@ -939,18 +934,21 @@
             <p>Desde yoga hasta boxeo, podés hacer actividades solo en tu barrio o a la salida de tu trabajo</p>
             <a class="feature-link" href="#demo">Ver más →</a>
             <div class="illo" aria-hidden="true">
-              <svg viewBox="0 0 300 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="220" cy="64" r="20" fill="#E6BD77" opacity=".7"/>
-                <path d="M126 220 C150 178, 172 151, 196 115" stroke="#244F35" stroke-width="18" stroke-linecap="round"/>
-                <path d="M126 220 C96 206, 74 190, 58 164" stroke="#244F35" stroke-width="18" stroke-linecap="round"/>
-                <path d="M195 114 C174 99, 151 94, 128 101" stroke="#244F35" stroke-width="18" stroke-linecap="round"/>
-                <path d="M196 114 C220 136, 236 158, 247 183" stroke="#244F35" stroke-width="15" stroke-linecap="round"/>
-                <path d="M128 101 C115 128, 102 152, 84 176" stroke="#C9472F" stroke-width="17" stroke-linecap="round"/>
-                <circle cx="204" cy="88" r="17" fill="#A85F42"/>
-                <path d="M216 81 C230 78, 240 84, 244 96" stroke="#244F35" stroke-width="8" stroke-linecap="round"/>
-                <path d="M58 224 H260" stroke="#151515" stroke-width="5" opacity=".18" stroke-linecap="round"/>
-                <path d="M250 190 C264 170, 278 160, 292 158" stroke="#244F35" stroke-width="7" stroke-linecap="round" opacity=".7"/>
-                <path d="M260 205 C274 190, 288 184, 298 183" stroke="#244F35" stroke-width="7" stroke-linecap="round" opacity=".55"/>
+              <svg viewBox="0 0 320 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 238H300" stroke="#151515" stroke-width="4" opacity=".10" stroke-linecap="round"/>
+                <ellipse cx="232" cy="208" rx="76" ry="28" fill="#EEE4D6"/>
+                <path d="M230 188C232 156 244 132 270 92" stroke="#D6A16A" stroke-width="12" stroke-linecap="round"/>
+                <path d="M219 196C195 188 173 174 148 156" stroke="#244F35" stroke-width="12" stroke-linecap="round"/>
+                <path d="M233 188C205 164 179 142 153 115" stroke="#244F35" stroke-width="14" stroke-linecap="round"/>
+                <path d="M219 196C204 214 181 229 154 238" stroke="#244F35" stroke-width="14" stroke-linecap="round"/>
+                <path d="M234 188C246 214 261 229 281 238" stroke="#244F35" stroke-width="14" stroke-linecap="round"/>
+                <path d="M153 115C143 130 136 145 132 162" stroke="#C95A39" stroke-width="10" stroke-linecap="round"/>
+                <circle cx="277" cy="80" r="10" fill="#E6BD77"/>
+                <circle cx="268" cy="98" r="16" fill="#A85F42"/>
+                <path d="M274 90C281 88 288 92 292 99" stroke="#3A2A23" stroke-width="5" stroke-linecap="round"/>
+                <path d="M292 205C304 186 312 168 316 154" stroke="#6E8B6C" stroke-width="6" stroke-linecap="round"/>
+                <path d="M302 220C314 205 320 194 320 180" stroke="#6E8B6C" stroke-width="6" stroke-linecap="round"/>
+                <path d="M302 195C312 182 318 170 320 160" stroke="#6E8B6C" stroke-width="4" stroke-linecap="round" opacity=".7"/>
               </svg>
             </div>
           </article>
@@ -960,19 +958,21 @@
             <p>Juntos no es solo una herramienta para personas: también ayudamos a diferentes asociaciones a llevar actividades de Wellness a su comunidad</p>
             <a class="feature-link" href="#demo">Ver más →</a>
             <div class="illo" aria-hidden="true">
-              <svg viewBox="0 0 320 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="246" cy="42" r="22" fill="#E6BD77" opacity=".75"/>
-                <circle cx="88" cy="88" r="18" fill="#A85F42"/>
-                <circle cx="158" cy="70" r="20" fill="#C9472F"/>
-                <circle cx="228" cy="92" r="18" fill="#151515"/>
-                <path d="M64 132 C70 104, 110 104, 118 132 L126 226 H52 L64 132Z" fill="#244F35"/>
-                <path d="M126 115 C136 82, 184 82, 194 115 L206 235 H112 L126 115Z" fill="#D87444"/>
-                <path d="M200 136 C208 108, 248 108, 256 136 L266 226 H190 L200 136Z" fill="#244F35"/>
-                <path d="M113 150 C140 173, 170 173, 202 150" stroke="#F7F2E8" stroke-width="13" stroke-linecap="round"/>
-                <path d="M196 155 C215 170, 232 170, 252 154" stroke="#F7F2E8" stroke-width="11" stroke-linecap="round"/>
-                <path d="M42 232 H278" stroke="#151515" stroke-width="5" opacity=".18" stroke-linecap="round"/>
-                <path d="M38 207 C29 181, 26 158, 36 132" stroke="#244F35" stroke-width="7" stroke-linecap="round" opacity=".55"/>
-                <path d="M286 208 C300 188, 306 166, 304 140" stroke="#244F35" stroke-width="7" stroke-linecap="round" opacity=".55"/>
+              <svg viewBox="0 0 340 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="282" cy="42" r="18" fill="#E6BD77"/>
+                <path d="M14 236H322" stroke="#151515" stroke-width="4" opacity=".10" stroke-linecap="round"/>
+                <ellipse cx="188" cy="216" rx="128" ry="32" fill="#EEE4D6"/>
+                <circle cx="104" cy="108" r="18" fill="#A06C49"/>
+                <circle cx="168" cy="90" r="22" fill="#D06A3B"/>
+                <circle cx="238" cy="108" r="20" fill="#1E1A1A"/>
+                <path d="M80 152C84 124 124 124 130 152L138 228H68L80 152Z" fill="#5E8467"/>
+                <path d="M138 132C146 96 194 96 204 132L216 236H122L138 132Z" fill="#C97347"/>
+                <path d="M214 152C220 124 260 124 268 152L278 228H202L214 152Z" fill="#5E8467"/>
+                <path d="M133 168C157 184 184 184 207 168" stroke="#F7F2E8" stroke-width="12" stroke-linecap="round"/>
+                <path d="M202 170C223 182 244 182 265 170" stroke="#F7F2E8" stroke-width="10" stroke-linecap="round"/>
+                <path d="M66 214C52 195 44 177 42 162" stroke="#6E8B6C" stroke-width="6" stroke-linecap="round"/>
+                <path d="M282 216C296 197 304 178 306 162" stroke="#6E8B6C" stroke-width="6" stroke-linecap="round"/>
+                <path d="M46 188C34 175 26 161 24 148" stroke="#6E8B6C" stroke-width="4" stroke-linecap="round" opacity=".7"/>
               </svg>
             </div>
           </article>
@@ -983,15 +983,15 @@
             <a class="feature-link" href="#precios">Ver más →</a>
             <div class="illo" aria-hidden="true">
               <svg viewBox="0 0 320 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M62 226 C62 170, 92 132, 132 120" stroke="#244F35" stroke-width="18" stroke-linecap="round"/>
-                <path d="M150 226 C150 162, 178 120, 216 96" stroke="#D8A331" stroke-width="18" stroke-linecap="round"/>
-                <path d="M238 226 C238 182, 254 148, 284 124" stroke="#C9472F" stroke-width="18" stroke-linecap="round"/>
+                <path d="M62 226C62 170 92 132 132 120" stroke="#244F35" stroke-width="18" stroke-linecap="round"/>
+                <path d="M150 226C150 162 178 120 216 96" stroke="#D8A331" stroke-width="18" stroke-linecap="round"/>
+                <path d="M238 226C238 182 254 148 284 124" stroke="#C9472F" stroke-width="18" stroke-linecap="round"/>
                 <circle cx="132" cy="120" r="20" fill="#244F35"/>
                 <circle cx="216" cy="96" r="20" fill="#D8A331"/>
                 <circle cx="284" cy="124" r="20" fill="#C9472F"/>
-                <path d="M42 232 H292" stroke="#151515" stroke-width="5" opacity=".18" stroke-linecap="round"/>
-                <path d="M80 78 C108 50, 154 46, 186 70" stroke="#244F35" stroke-width="7" stroke-linecap="round" opacity=".25"/>
-                <path d="M115 52 L124 82 L94 74" fill="#244F35" opacity=".28"/>
+                <path d="M42 232H292" stroke="#151515" stroke-width="5" opacity=".18" stroke-linecap="round"/>
+                <path d="M80 78C108 50 154 46 186 70" stroke="#244F35" stroke-width="7" stroke-linecap="round" opacity=".25"/>
+                <path d="M115 52L124 82L94 74" fill="#244F35" opacity=".28"/>
               </svg>
             </div>
           </article>
@@ -1068,26 +1068,27 @@
 
           <div class="about-illo" aria-hidden="true">
             <svg viewBox="0 0 560 340" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="458" cy="182" r="146" fill="#244F35" opacity=".18"/>
-              <circle cx="145" cy="70" r="24" fill="#D8A331" opacity=".85"/>
-              <rect x="48" y="86" width="82" height="176" rx="8" fill="#1F5A7A" opacity=".11"/>
-              <rect x="410" y="58" width="90" height="204" rx="8" fill="#D8A331" opacity=".12"/>
-              <circle cx="138" cy="138" r="22" fill="#A85F42"/>
-              <circle cx="236" cy="104" r="24" fill="#C9472F"/>
-              <circle cx="342" cy="126" r="24" fill="#151515"/>
-              <circle cx="438" cy="150" r="22" fill="#A85F42"/>
-              <path d="M96 206 C104 166, 168 166, 176 206 L186 310 H84 L96 206Z" fill="#244F35"/>
-              <path d="M188 178 C198 136, 276 136, 286 178 L300 320 H174 L188 178Z" fill="#D87444"/>
-              <path d="M304 198 C314 156, 386 156, 396 198 L408 320 H292 L304 198Z" fill="#F2D8AE"/>
-              <path d="M402 218 C410 178, 478 178, 486 218 L496 310 H390 L402 218Z" fill="#244F35"/>
-              <path d="M174 206 C214 238, 254 238, 302 204" stroke="#F7F2E8" stroke-width="15" stroke-linecap="round"/>
-              <path d="M300 212 C340 240, 376 240, 414 214" stroke="#F7F2E8" stroke-width="15" stroke-linecap="round"/>
-              <path d="M88 314 H500" stroke="#151515" stroke-width="5" stroke-linecap="round" opacity=".16"/>
-              <path d="M500 238 C524 212, 536 180, 532 146" stroke="#244F35" stroke-width="9" stroke-linecap="round" opacity=".35"/>
-              <path d="M518 262 C540 246, 552 222, 556 198" stroke="#244F35" stroke-width="9" stroke-linecap="round" opacity=".25"/>
+              <circle cx="470" cy="186" r="130" fill="#244F35" opacity=".18"/>
+              <circle cx="150" cy="72" r="22" fill="#E6BD77" opacity=".9"/>
+              <circle cx="194" cy="72" r="16" fill="#D8A331" opacity=".92"/>
+              <rect x="360" y="78" width="96" height="154" rx="8" fill="#C8CEC4" opacity=".42"/>
+              <circle cx="150" cy="150" r="18" fill="#A06C49"/>
+              <circle cx="236" cy="124" r="22" fill="#B55534"/>
+              <circle cx="334" cy="140" r="22" fill="#EFE4CF"/>
+              <circle cx="430" cy="156" r="18" fill="#1A1A1A"/>
+              <path d="M112 210C120 174 176 174 184 210L194 304H102L112 210Z" fill="#315F42"/>
+              <path d="M192 180C202 140 272 140 282 180L296 314H178L192 180Z" fill="#C97347"/>
+              <path d="M296 194C306 154 374 154 384 194L396 314H282L296 194Z" fill="#F1DEBB"/>
+              <path d="M392 214C400 178 456 178 464 214L474 304H382L392 214Z" fill="#315F42"/>
+              <path d="M184 214C220 246 258 246 300 214" stroke="#F7F2E8" stroke-width="15" stroke-linecap="round"/>
+              <path d="M298 220C336 248 372 248 410 222" stroke="#F7F2E8" stroke-width="15" stroke-linecap="round"/>
+              <path d="M96 308H484" stroke="#151515" stroke-width="5" stroke-linecap="round" opacity=".12"/>
+              <path d="M470 258C490 234 502 212 506 194" stroke="#6E8B6C" stroke-width="8" stroke-linecap="round" opacity=".5"/>
+              <path d="M488 280C508 262 522 242 528 224" stroke="#6E8B6C" stroke-width="8" stroke-linecap="round" opacity=".35"/>
             </svg>
           </div>
         </article>
+      </section>        </article>
       </section>
 
       <footer>
