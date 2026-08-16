@@ -3,169 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Juntos | Bienestar para personas y comunidades</title>
+  <meta name="description" content="JUNTOS conecta personas, grupos y comunidades con mejores oportunidades de bienestar a partir de demanda compartida." />
+  <title>JUNTOS | Bienestar compartido</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#f7f1e8;
-      --paper:#fbf7ef;
-      --paper-soft:#f0e8dc;
-      --paper-green:#e9efe8;
-      --ink:#20231f;
-      --muted:#67685f;
-      --green:#153f2b;
-      --green-2:#315f46;
-      --red:#c6462d;
-      --red-dark:#a93623;
-      --line:rgba(21,63,43,.12);
-      --shadow:0 18px 50px rgba(46,38,29,.08);
-      --container:1180px;
-      --radius:18px;
-    }
-
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
-    img{display:block;max-width:100%}
-    a{color:inherit}
-    button,input,select{font:inherit}
-    .shell{width:min(var(--container),calc(100% - 64px));margin:0 auto}
-
-    header{height:84px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;border-bottom:1px solid rgba(21,63,43,.08)}
-    .brand{font:600 39px/1 "Cormorant Garamond",Georgia,serif;color:var(--green);text-decoration:none;letter-spacing:.02em}
-    nav{display:flex;gap:28px;align-items:center;justify-content:center;font-size:13px;font-weight:500}
-    nav a{text-decoration:none;color:#45483f;transition:color .18s ease}
-    nav a:hover{color:var(--red)}
-    .header-cta{justify-self:end}
-
-    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 24px;border-radius:10px;border:1px solid transparent;font-size:13px;font-weight:700;text-decoration:none;cursor:pointer;transition:transform .18s ease,background .18s ease,border-color .18s ease,box-shadow .18s ease}
-    .btn:hover{transform:translateY(-1px)}
-    .btn.primary{background:var(--red);color:#fff;box-shadow:0 9px 20px rgba(198,70,45,.15)}
-    .btn.primary:hover{background:var(--red-dark);box-shadow:0 12px 24px rgba(198,70,45,.20)}
-    .btn.secondary{background:transparent;border-color:#a99d90;color:#373a34}
-    .btn.secondary:hover{background:rgba(255,255,255,.35);border-color:#796f65}
-
-    .hero{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(390px,.92fr);gap:70px;align-items:center;padding:58px 0 62px}
-    .hero-copy{max-width:590px}
-    .eyebrow{display:inline-flex;align-items:center;gap:9px;margin-bottom:18px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green-2)}
-    .eyebrow::before{content:"";width:28px;height:2px;background:var(--red)}
-    h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;color:var(--green)}
-    h1{margin:0;max-width:590px;font-size:clamp(56px,5.1vw,74px);line-height:.97;letter-spacing:-.04em;font-weight:600}
-    .lead{margin:22px 0 0;max-width:535px;font-size:17px;line-height:1.65;color:#4f524b}
-    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
-
-    .form-card{background:var(--paper);border:1px solid #e2d8cb;border-radius:20px;box-shadow:var(--shadow);padding:24px}
-    .form-title{margin:0;font-size:32px;line-height:1;letter-spacing:-.02em;font-weight:600}
-    .form-help{margin:8px 0 16px;font-size:13px;line-height:1.45;color:var(--muted)}
-    .switch{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:4px;background:#eee7dc;border-radius:11px;margin-bottom:16px}
-    .switch button{min-height:38px;border:0;border-radius:8px;background:transparent;color:#5b5d56;font-size:12px;font-weight:700;cursor:pointer;transition:background .18s ease,color .18s ease,box-shadow .18s ease}
-    .switch button.active{background:var(--green);color:#fff;box-shadow:0 4px 10px rgba(21,63,43,.12)}
-    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    label{display:block;margin-bottom:6px;font-size:12px;font-weight:700;color:#353832}
-    input,select{width:100%;height:43px;padding:0 12px;border:1px solid #d3c8bb;border-radius:9px;background:#fffaf4;color:#3f413c;font-size:13px;outline:none;transition:border-color .18s ease,box-shadow .18s ease}
-    input:focus,select:focus{border-color:#b88778;box-shadow:0 0 0 3px rgba(198,70,45,.07)}
-    .submit{width:100%;height:45px;margin-top:14px;border:0;border-radius:9px;background:var(--red);color:#fff;font-size:13px;font-weight:700;cursor:pointer;transition:background .18s ease,transform .18s ease}
-    .submit:hover{background:var(--red-dark);transform:translateY(-1px)}
-    .form-note{margin:9px 0 0;text-align:center;font-size:11px;color:#7b756d}
-    .entity-only{display:none}.entity-mode .person-only{display:none}.entity-mode .entity-only{display:block}
-
-    .benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;padding:26px 0 58px;border-bottom:1px solid var(--line)}
-    .benefit{display:grid;grid-template-columns:34px 1fr;gap:14px;align-items:start}
-    .benefit-index{font-family:"Cormorant Garamond",Georgia,serif;font-size:28px;line-height:1;color:var(--red)}
-    .benefit strong{display:block;margin-bottom:5px;font-size:14px}
-    .benefit p{margin:0;font-size:13px;line-height:1.55;color:var(--muted)}
-
-    .how{padding:74px 0 78px}
-    .section-heading{display:flex;justify-content:space-between;gap:48px;align-items:end;margin-bottom:38px}
-    .section-heading h2{margin:0;font-size:clamp(40px,4vw,50px);line-height:1;letter-spacing:-.035em;font-weight:600}
-    .section-heading p{margin:0;max-width:430px;font-size:14px;line-height:1.65;color:var(--muted)}
-    .steps{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-    .step{padding:24px 24px 26px 0}
-    .step:not(:last-child){border-right:1px solid var(--line);padding-right:24px;margin-right:24px}
-    .step-num{font-family:"Cormorant Garamond",Georgia,serif;font-size:34px;line-height:1;color:var(--red);margin-bottom:16px}
-    .step h3{margin:0 0 8px;font-family:Inter,Arial,sans-serif;font-size:14px;line-height:1.4;color:var(--ink)}
-    .step p{margin:0;font-size:12px;line-height:1.55;color:var(--muted)}
-
-    .story-band{background:var(--paper-soft)}
-    .story-band.alt{background:var(--paper-green)}
-    .story{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(320px,.82fr);gap:80px;align-items:center;padding:76px 0}
-    .story.reverse{grid-template-columns:minmax(320px,.82fr) minmax(0,1.18fr)}
-    .story.reverse .story-visual{order:1}.story.reverse .story-copy{order:2}
-    .story-copy{max-width:560px}
-    .story-kicker{margin-bottom:12px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--red)}
-    .story h2{margin:0;font-size:clamp(42px,4.2vw,54px);line-height:1;letter-spacing:-.035em;font-weight:600}
-    .story p{margin:18px 0 0;max-width:520px;font-size:16px;line-height:1.7;color:#4f524b}
-    .story-visual{display:flex;justify-content:center;align-items:center;min-height:280px}
-    .story-visual img{width:min(100%,390px);max-height:300px;object-fit:contain}
-
-    .pricing{padding:78px 0 84px}
-    .pricing-top{display:flex;align-items:end;justify-content:space-between;gap:40px;margin-bottom:30px}
-    .pricing-top h2{margin:0;font-size:clamp(40px,4vw,50px);line-height:1;letter-spacing:-.035em;font-weight:600}
-    .pricing-top p{margin:0;max-width:430px;font-size:14px;line-height:1.65;color:var(--muted)}
-    .pricing-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .price-card{min-height:190px;display:flex;flex-direction:column;justify-content:space-between;padding:20px;border:1px solid #ddd2c4;border-radius:16px;background:rgba(251,247,239,.72);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
-    .price-card:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(46,38,29,.05)}
-    .price-card.featured{border-color:#d68472;background:#fbf1e7}
-    .plan-meta{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
-    .price-card h3{margin:0;font-size:27px;line-height:1;font-weight:600;letter-spacing:-.025em}
-    .price-card p{margin:6px 0 0;font-size:12px;line-height:1.45;color:var(--muted)}
-    .badge{display:inline-flex;width:fit-content;padding:6px 10px;border-radius:999px;background:#ebe6dc;font-size:11px;color:#55584f}
-    .featured .badge{background:#f5ded5;color:#8f3f2c}
-    .logic{margin-top:18px;padding-top:14px;border-top:1px solid #e2d9ce;font-size:12px;font-weight:700;color:#55584f}
-
-    .about-band{background:var(--green);color:#f8f2e9}
-    .about{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);gap:72px;align-items:center;padding:76px 0}
-    .about h2{margin:0;color:#f8f2e9;font-size:clamp(44px,4.4vw,58px);line-height:1;letter-spacing:-.035em;font-weight:600;max-width:620px}
-    .about p{margin:18px 0 0;max-width:560px;font-size:16px;line-height:1.7;color:rgba(248,242,233,.78)}
-    .about-visual{display:flex;justify-content:center}
-    .about-visual img{width:min(100%,340px);max-height:280px;object-fit:contain}
-
-    .final-cta{display:flex;justify-content:space-between;align-items:center;gap:40px;padding:38px 0 42px}
-    .final-cta h3{margin:0;font-size:34px;line-height:1.05;letter-spacing:-.025em;font-weight:600}
-    .final-cta p{margin:7px 0 0;font-size:13px;color:var(--muted)}
-    .final-actions{display:flex;gap:12px;flex-wrap:wrap}
-
-    footer{padding:24px 0 34px;border-top:1px solid var(--line);font-size:12px;color:#77756e}
-
-    @media(max-width:1000px){
-      nav{display:none}
-      .hero{grid-template-columns:1fr;gap:36px;padding:48px 0 54px}
-      .hero-copy{max-width:700px}
-      .form-card{max-width:660px}
-      .story,.story.reverse,.about{grid-template-columns:1fr;gap:34px}
-      .story.reverse .story-visual,.story.reverse .story-copy{order:initial}
-      .story-visual,.about-visual{justify-content:flex-start}
-      .section-heading,.pricing-top{align-items:flex-start;flex-direction:column;gap:16px}
-    }
-
-    @media(max-width:760px){
-      .shell{width:min(var(--container),calc(100% - 32px))}
-      header{height:74px;grid-template-columns:1fr auto}.brand{font-size:34px}.header-cta{min-height:40px;padding:0 15px}
-      h1{font-size:clamp(50px,14vw,62px)}
-      .lead{font-size:16px}
-      .hero-actions{flex-direction:column;align-items:stretch}.hero-actions .btn{width:100%}
-      .form-card{padding:20px 18px}.form-grid{grid-template-columns:1fr}.form-title{font-size:30px}
-      .benefits{grid-template-columns:1fr;gap:22px;padding-bottom:48px}
-      .how,.pricing{padding:60px 0}
-      .steps{grid-template-columns:1fr 1fr}
-      .step,.step:not(:last-child){margin:0;padding:20px 16px 22px 0;border-right:0}
-      .step:nth-child(odd){border-right:1px solid var(--line);padding-right:20px;margin-right:20px}
-      .story{padding:60px 0}.story h2{font-size:42px}.story p{font-size:15px}.story-visual img{width:min(100%,320px);max-height:260px}
-      .pricing-cards{grid-template-columns:1fr}.price-card{min-height:auto}
-      .about{padding:60px 0}.about-visual img{width:min(100%,300px)}
-      .final-cta{align-items:flex-start;flex-direction:column}.final-actions{width:100%}.final-actions .btn{flex:1}
-    }
-
-    @media(max-width:480px){
-      .switch{grid-template-columns:1fr}
-      .steps{grid-template-columns:1fr}
-      .step,.step:nth-child(odd){border-right:0;border-bottom:1px solid var(--line);margin:0;padding:20px 0}
-      .step:last-child{border-bottom:0}
-      .final-actions{flex-direction:column}.final-actions .btn{width:100%}
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
   <main>
@@ -174,9 +17,8 @@
         <a class="brand" href="#">JUNTOS</a>
         <nav aria-label="Navegación principal">
           <a href="#como-funciona">Cómo funciona</a>
-          <a href="#actividades">Actividades</a>
-          <a href="#comunidades">Comunidades</a>
-          <a href="#precios">Pricing</a>
+          <a href="#para-quien">Para quién es</a>
+          <a href="#planes">Planes</a>
           <a href="#nosotros">Nosotros</a>
         </nav>
         <a class="btn primary header-cta" href="#demo">Probar demo</a>
@@ -184,117 +26,248 @@
 
       <section class="hero" id="demo">
         <div class="hero-copy">
-          <div class="eyebrow">Bienestar más cerca</div>
+          <div class="eyebrow">Bienestar compartido</div>
           <h1>Accedé a mejores actividades, juntos.</h1>
-          <p class="lead">Desde JUNTOS ayudamos a personas y diferentes organizaciones barriales y municipales a acceder a actividades y servicios de bienestar.</p>
+          <p class="lead">JUNTOS conecta personas que buscan algo parecido para descubrir actividades cercanas y generar mejores oportunidades de acceso.</p>
+          <div class="hero-proof" aria-label="Beneficios principales">
+            <span>Según tu zona</span>
+            <span>Según tu horario</span>
+            <span>Según tu presupuesto</span>
+          </div>
           <div class="hero-actions">
-            <a class="btn primary" href="#demo">Probar demo</a>
-            <a class="btn secondary" href="https://LINK-AL-VIDEO-DE-CODER" target="_blank" rel="noopener">Ver vídeo demo</a>
+            <a class="btn primary" href="#buscador">Encontrar opciones</a>
+            <a class="btn secondary" href="#idea-juntos">Entender cómo funciona</a>
           </div>
         </div>
 
-        <aside class="form-card" aria-label="Buscador de actividades">
+        <aside class="search-card" id="buscador" aria-label="Buscador de oportunidades">
           <form id="juntos-form">
-            <h2 class="form-title">Encontrá tu mejor opción</h2>
-            <p class="form-help person-only">Completá 4 datos y te mostramos oportunidades cercanas a vos.</p>
-            <p class="form-help entity-only">Contanos qué necesita tu comunidad y armamos una propuesta.</p>
+            <h2>Encontrá tu mejor opción</h2>
+            <p class="helper">Contanos qué necesitás. La demo simula coincidencias y demanda en tu zona.</p>
+
             <div class="switch" role="tablist" aria-label="Tipo de usuario">
-              <button class="active" type="button" id="person-tab">Soy un explorador</button>
-              <button type="button" id="entity-tab">Soy una entidad</button>
+              <button type="button" role="tab" id="person-tab" aria-selected="true">Soy un explorador</button>
+              <button type="button" role="tab" id="entity-tab" aria-selected="false">Soy una entidad</button>
             </div>
-            <input type="hidden" name="tipo_usuario" id="tipo_usuario" value="persona">
+            <input type="hidden" name="tipo_usuario" id="tipo_usuario" value="persona" />
+
             <div class="form-grid">
-              <div><label for="actividad">Actividad que te interesa</label><select id="actividad" name="actividad" required><option value="">Ej: Yoga, Funcional, Bienestar emocional...</option><option>Yoga</option><option>Funcional</option><option>Boxeo</option><option>Pilates</option><option>Gimnasio</option><option>Natación</option><option>Danza</option></select></div>
-              <div><label for="presupuesto_max">Presupuesto</label><select id="presupuesto_max" name="presupuesto_max" required><option value="">Elegí tu rango</option><option value="30000">Hasta $30.000</option><option value="50000">Hasta $50.000</option><option value="70000">Hasta $70.000</option><option value="100000">Hasta $100.000</option></select></div>
-              <div><label for="zona">Zona</label><input id="zona" name="zona" placeholder="Ej: Palermo, Belgrano..." required></div>
-              <div><label for="franja_horaria">Horario preferido</label><select id="franja_horaria" name="franja_horaria" required><option value="">Ej: Mañana, Tarde, Noche, Finde</option><option>Mañana</option><option>Tarde</option><option>Después del trabajo</option><option>Noche</option><option>Fin de semana</option></select></div>
+              <div class="field" data-mode="persona">
+                <label for="actividad">Actividad</label>
+                <select id="actividad" name="actividad" data-required="true" required>
+                  <option value="">Elegí una actividad</option>
+                  <option>Yoga</option>
+                  <option>Funcional</option>
+                  <option>Boxeo</option>
+                  <option>Pilates</option>
+                  <option>Gimnasio</option>
+                  <option>Natación</option>
+                  <option>Danza</option>
+                </select>
+              </div>
+              <div class="field" data-mode="persona">
+                <label for="presupuesto_max">Presupuesto</label>
+                <select id="presupuesto_max" name="presupuesto_max" data-required="true" required>
+                  <option value="">Elegí tu rango</option>
+                  <option value="30000">Hasta $30.000</option>
+                  <option value="50000">Hasta $50.000</option>
+                  <option value="70000">Hasta $70.000</option>
+                  <option value="100000">Hasta $100.000</option>
+                </select>
+              </div>
+              <div class="field" data-mode="persona">
+                <label for="zona">Zona</label>
+                <input id="zona" name="zona" placeholder="Ej: Palermo, Adrogué..." data-required="true" required />
+              </div>
+              <div class="field" data-mode="persona">
+                <label for="franja_horaria">Horario preferido</label>
+                <select id="franja_horaria" name="franja_horaria" data-required="true" required>
+                  <option value="">Elegí un horario</option>
+                  <option>Mañana</option>
+                  <option>Tarde</option>
+                  <option>Después del trabajo</option>
+                  <option>Noche</option>
+                  <option>Flexible</option>
+                </select>
+              </div>
+
+              <div class="field full" data-mode="entidad" hidden>
+                <label for="nombre_entidad">Nombre de la entidad</label>
+                <input id="nombre_entidad" name="nombre_entidad" placeholder="Ej: Club, municipio, asociación..." data-required="true" disabled />
+              </div>
+              <div class="field" data-mode="entidad" hidden>
+                <label for="tipo_entidad">Tipo de entidad</label>
+                <select id="tipo_entidad" name="tipo_entidad" data-required="true" disabled>
+                  <option value="">Elegí una opción</option>
+                  <option>Club</option>
+                  <option>Municipio</option>
+                  <option>Asociación barrial</option>
+                  <option>Universidad</option>
+                  <option>Empresa</option>
+                  <option>Otra</option>
+                </select>
+              </div>
+              <div class="field" data-mode="entidad" hidden>
+                <label for="zona_entidad">Zona</label>
+                <input id="zona_entidad" name="zona" placeholder="Ej: Quilmes, Palermo..." data-required="true" disabled />
+              </div>
+              <div class="field" data-mode="entidad" hidden>
+                <label for="actividad_entidad">Actividad o interés</label>
+                <select id="actividad_entidad" name="actividad" data-required="true" disabled>
+                  <option value="">Elegí una actividad</option>
+                  <option>Yoga</option>
+                  <option>Funcional</option>
+                  <option>Boxeo</option>
+                  <option>Pilates</option>
+                  <option>Gimnasio</option>
+                  <option>Natación</option>
+                  <option>Danza</option>
+                </select>
+              </div>
+              <div class="field" data-mode="entidad" hidden>
+                <label for="cantidad_estimada">Personas estimadas</label>
+                <input id="cantidad_estimada" name="cantidad_estimada" type="number" min="1" value="25" data-required="true" disabled />
+              </div>
+              <div class="field full" data-mode="entidad" hidden>
+                <label for="objetivo_entidad">Objetivo</label>
+                <select id="objetivo_entidad" name="objetivo_entidad" data-required="true" disabled>
+                  <option value="">¿Qué querés lograr?</option>
+                  <option>Mejor precio grupal</option>
+                  <option>Crear una nueva actividad</option>
+                  <option>Ampliar beneficios para la comunidad</option>
+                  <option>Medir interés antes de contratar</option>
+                </select>
+              </div>
             </div>
-            <button class="submit" id="submit-btn" type="submit">Ver opciones disponibles →</button>
-            <p class="form-note">🔒 Demo con datos ficticios para CoderCup</p>
+
+            <button class="submit" id="submit-btn" type="submit">Ver oportunidades →</button>
+            <p class="form-note">Demo con datos ficticios · No requiere registro</p>
           </form>
         </aside>
       </section>
 
-      <section class="benefits" aria-label="Beneficios principales">
-        <article class="benefit"><div class="benefit-index">01</div><div><strong>Para vos</strong><p>Encontrá actividades que se adapten a tu zona, horario y presupuesto.</p></div></article>
-        <article class="benefit"><div class="benefit-index">02</div><div><strong>Para tu grupo</strong><p>Sumate con amigos, vecinos o compañeros y accedé a mejores beneficios.</p></div></article>
-        <article class="benefit"><div class="benefit-index">03</div><div><strong>Para entidades</strong><p>Contactanos y diseñá propuestas para tu comunidad.</p></div></article>
+      <section class="audiences" id="para-quien" aria-label="Para quién es JUNTOS">
+        <article class="audience">
+          <div class="label">Para vos</div>
+          <h3>Encontrá algo que te cierre.</h3>
+          <p>Actividad, zona, horario y presupuesto en una misma búsqueda.</p>
+        </article>
+        <article class="audience">
+          <div class="label">Para tu grupo</div>
+          <h3>Buscar juntos cambia el acceso.</h3>
+          <p>Cuando varias personas quieren algo parecido, aparece poder de negociación.</p>
+        </article>
+        <article class="audience">
+          <div class="label">Para entidades</div>
+          <h3>Convertí interés en una propuesta.</h3>
+          <p>Detectá demanda antes de lanzar una actividad o beneficio para tu comunidad.</p>
+        </article>
       </section>
+    </div>
 
+    <section class="collective" id="idea-juntos">
+      <div class="shell collective-grid">
+        <div>
+          <div class="eyebrow">La idea JUNTOS</div>
+          <h2>No somos otro buscador de gimnasios.</h2>
+          <p>El diferencial está en detectar cuándo muchas personas buscan algo parecido y transformar esa demanda dispersa en una oportunidad colectiva.</p>
+        </div>
+        <div class="collective-flow" aria-label="Cómo funciona la demanda colectiva">
+          <div class="flow-row"><div class="flow-num">01</div><div><strong>Vos contás qué buscás</strong><span>Actividad, zona, horario y presupuesto.</span></div></div>
+          <div class="flow-row"><div class="flow-num">02</div><div><strong>JUNTOS encuentra coincidencias</strong><span>Agrupamos intereses compatibles para detectar demanda.</span></div></div>
+          <div class="flow-row"><div class="flow-num">03</div><div><strong>La demanda se vuelve visible</strong><span>Eso abre la posibilidad de mejores precios, horarios o propuestas.</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="shell">
       <section class="how" id="como-funciona">
-        <div class="section-heading">
-          <h2>Cómo funciona</h2>
-          <p>Te conectamos a vos o a tu comunidad con diferentes propuestas de Wellness 💜</p>
+        <div class="section-head">
+          <h2 class="section-title">Cómo funciona</h2>
+          <p class="body-md">Una experiencia simple para el usuario, con una lógica colectiva por detrás.</p>
         </div>
         <div class="steps">
-          <article class="step"><div class="step-num">01</div><h3>Contanos qué buscás</h3><p>Completá el formulario con tus preferencias.</p></article>
-          <article class="step"><div class="step-num">02</div><h3>Detectamos demanda</h3><p>Agrupamos intereses similares en tu zona.</p></article>
-          <article class="step"><div class="step-num">03</div><h3>Procesamos toda la info</h3><p>Buscamos tu match perfecto en nuestras bases de datos.</p></article>
-          <article class="step"><div class="step-num">04</div><h3>Te mostramos diferentes opciones</h3><p>Para que puedas elegir un lugar que te quede cómodo y se adapte a tus necesidades.</p></article>
+          <article class="step"><div class="step-num">01</div><h3>Buscás</h3><p>Nos contás qué actividad querés y qué condiciones necesitás.</p></article>
+          <article class="step"><div class="step-num">02</div><h3>Detectamos demanda</h3><p>Identificamos personas o comunidades con intereses compatibles.</p></article>
+          <article class="step"><div class="step-num">03</div><h3>Encontramos oportunidades</h3><p>Ordenamos opciones según cercanía, presupuesto y potencial colectivo.</p></article>
+          <article class="step"><div class="step-num">04</div><h3>Elegís</h3><p>Ves alternativas concretas y decidís cuál tiene más sentido para vos.</p></article>
         </div>
       </section>
     </div>
 
-    <section class="story-band" id="actividades">
-      <div class="shell story">
+    <section class="story activities" id="actividades">
+      <div class="shell story-grid">
         <div class="story-copy">
-          <div class="story-kicker">Para explorar</div>
-          <h2>Actividades</h2>
-          <p>Desde yoga hasta boxeo, podés hacer actividades solo en tu barrio o a la salida de tu trabajo.</p>
+          <div class="eyebrow">Actividades</div>
+          <h2 class="section-title">No buscás “wellness”. Buscás algo concreto.</h2>
+          <p class="body-lg">Desde una clase de yoga cerca de casa hasta boxeo después del trabajo. JUNTOS parte de necesidades reales, no de categorías abstractas.</p>
+          <div class="chips" aria-label="Ejemplos de actividades">
+            <span class="chip">Yoga</span><span class="chip">Pilates</span><span class="chip">Funcional</span><span class="chip">Boxeo</span><span class="chip">Natación</span><span class="chip">Danza</span>
+          </div>
         </div>
-        <div class="story-visual"><img src="assets/illustration-activities.png.png" alt="Mujer practicando yoga"></div>
+        <div class="story-visual"><img src="assets/illustration-activities.png.png" alt="Mujer practicando yoga" /></div>
       </div>
     </section>
 
-    <section class="story-band alt" id="comunidades">
-      <div class="shell story reverse">
+    <section class="story communities" id="comunidades">
+      <div class="shell story-grid">
         <div class="story-copy">
-          <div class="story-kicker">Para crecer juntos</div>
-          <h2>Comunidades</h2>
-          <p>Juntos no es solo una herramienta para personas: también ayudamos a diferentes asociaciones a llevar actividades de Wellness a su comunidad.</p>
+          <div class="eyebrow">Comunidades</div>
+          <h2 class="section-title">Una necesidad individual puede convertirse en una oportunidad colectiva.</h2>
+          <p class="body-lg">Clubes, asociaciones, municipios y grupos pueden detectar qué quiere su gente antes de invertir o negociar una propuesta.</p>
+          <p class="impact-quote">“Si muchas personas buscan lo mismo, ya no es una intención aislada: es demanda.”</p>
         </div>
-        <div class="story-visual"><img src="assets/illustration-about.png.png" alt="Personas abrazadas en comunidad"></div>
+        <div class="story-visual"><img src="assets/illustration-about.png.png" alt="Personas reunidas en comunidad" /></div>
       </div>
     </section>
 
     <div class="shell">
-      <section class="pricing" id="precios">
-        <div class="pricing-top">
-          <h2>Pricing</h2>
-          <p>Tenemos tu plan favorito solo al alcance de un click.</p>
+      <section class="plans" id="planes">
+        <div class="plans-intro">
+          <div class="eyebrow">Formas de participar</div>
+          <h2 class="section-title">Cuantos más somos, mejor podemos acceder.</h2>
+          <p class="body-md">No son precios cerrados: son tres maneras de participar en la lógica de JUNTOS.</p>
         </div>
-        <div class="pricing-cards">
-          <article class="price-card"><div><div class="plan-meta"><div><h3>Explorador</h3><p>Voy por mi cuenta</p></div><span class="badge">1 persona</span></div></div><div class="logic">Precio estándar</div></article>
-          <article class="price-card featured"><div><div class="plan-meta"><div><h3>Manada</h3><p>Nos juntamos para acceder mejor</p></div><span class="badge">3–8 personas</span></div></div><div class="logic">Descuento grupal</div></article>
-          <article class="price-card"><div><div class="plan-meta"><div><h3>Comunidad+</h3><p>Somos muchos y negociamos juntos</p></div><span class="badge">9+ personas</span></div></div><div class="logic">Mejor precio / beneficios extra</div></article>
+        <div class="plan-grid">
+          <article class="plan">
+            <div><div class="plan-top"><div><h3>Explorador</h3><p>Busco por mi cuenta.</p></div><span class="badge">1 persona</span></div></div>
+            <div class="plan-footer">Encontrá opciones compatibles.</div>
+          </article>
+          <article class="plan featured">
+            <div><div class="plan-top"><div><h3>Manada</h3><p>Nos agrupamos para acceder mejor.</p></div><span class="badge">La idea JUNTOS</span></div></div>
+            <div class="plan-footer">Más demanda, más capacidad de negociar.</div>
+          </article>
+          <article class="plan">
+            <div><div class="plan-top"><div><h3>Comunidad+</h3><p>Organizamos demanda a mayor escala.</p></div><span class="badge">9+ personas</span></div></div>
+            <div class="plan-footer">Ideal para organizaciones y comunidades.</div>
+          </article>
         </div>
       </section>
     </div>
 
-    <section class="about-band" id="nosotros">
-      <div class="shell about">
+    <section class="about" id="nosotros">
+      <div class="shell about-grid">
+        <div class="about-copy">
+          <div class="eyebrow">Nosotros</div>
+          <h2 class="section-title">Queremos que acceder al bienestar no dependa solo de dónde trabajás o cuánto podés pagar.</h2>
+          <p class="body-lg">JUNTOS nace para ordenar demanda, conectar personas y ayudar a crear propuestas más accesibles para barrios, grupos y comunidades.</p>
+        </div>
+        <div class="about-visual"><img src="assets/illustration-about.png.png" alt="Comunidad conectada" /></div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="shell final-cta-inner">
         <div>
-          <h2>Creemos en el bienestar compartido.</h2>
-          <p>Queremos construir comunidades más activas y conectadas, acercando mejores oportunidades de bienestar a más personas.</p>
+          <h2>¿Qué actividad estás buscando?</h2>
+          <p>Probá la demo y mirá cómo JUNTOS transforma una búsqueda en una oportunidad colectiva.</p>
         </div>
-        <div class="about-visual"><img src="assets/illustration-about.png.png" alt="Comunidad reunida"></div>
+        <a class="btn primary" href="#buscador">Probar JUNTOS</a>
       </div>
     </section>
 
-    <div class="shell">
-      <section class="final-cta">
-        <div><h3>Accedé a mejores actividades, juntos.</h3><p>Probá la demo y encontrá opciones según tu zona, horario y presupuesto.</p></div>
-        <div class="final-actions"><a class="btn primary" href="#demo">Probar demo</a><a class="btn secondary" href="https://LINK-AL-VIDEO-DE-CODER" target="_blank" rel="noopener">Ver vídeo demo</a></div>
-      </section>
-      <footer>JUNTOS · Wellness para personas y comunidades</footer>
-    </div>
+    <div class="shell"><footer>JUNTOS · Wellness para personas y comunidades</footer></div>
   </main>
-
-  <script>
-    const body=document.body, personTab=document.getElementById('person-tab'), entityTab=document.getElementById('entity-tab'), tipo=document.getElementById('tipo_usuario'), form=document.getElementById('juntos-form'), submit=document.getElementById('submit-btn');
-    function setMode(mode){const entity=mode==='entidad';body.classList.toggle('entity-mode',entity);personTab.classList.toggle('active',!entity);entityTab.classList.toggle('active',entity);tipo.value=entity?'entidad':'persona'}
-    personTab.addEventListener('click',()=>setMode('persona'));entityTab.addEventListener('click',()=>setMode('entidad'));
-    form.addEventListener('submit',(e)=>{e.preventDefault();const data=Object.fromEntries(new FormData(form).entries());sessionStorage.setItem('juntos_resultado',JSON.stringify({actividad:data.actividad,zona:data.zona,personas_compatibles:31,demanda_suficiente:true,mensaje_usuario:'Encontramos opciones compatibles para tu búsqueda.',resultados:[{nombre:'Fit Sur Club',tipo:data.actividad||'Actividad',zona:data.zona||'Tu zona',horario:data.franja_horaria||'Flexible',precio_estimado:'$42.000',demanda:18,estado:'Grupo en formación'},{nombre:'Espacio Movimiento',tipo:data.actividad||'Actividad',zona:data.zona||'Tu zona',horario:'Flexible',precio_estimado:'$48.000',demanda:24,estado:'Oportunidad para negociar'},{nombre:'Club de la Comunidad',tipo:data.actividad||'Actividad',zona:data.zona||'Tu zona',horario:'Flexible',precio_estimado:'$35.000',demanda:31,estado:'Listo para propuesta grupal'}]}));window.location.href=`./resultados.html?actividad=${encodeURIComponent(data.actividad||'')}&zona=${encodeURIComponent(data.zona||'')}`});
-  </script>
+  <script src="./app.js" defer></script>
 </body>
 </html>
