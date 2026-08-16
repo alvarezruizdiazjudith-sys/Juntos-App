@@ -1,0 +1,15 @@
+.env
+.env.*
+!.env.example
+
+# Local/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Dependencies and generated output
+node_modules/
+.vercel/
+dist/
+build/
