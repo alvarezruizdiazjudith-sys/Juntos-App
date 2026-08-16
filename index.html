@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juntos | Bienestar por demanda colectiva</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f7f2e8;
+      --card: #fbf7ef;
+      --text: #151515;
+      --muted: #6d675f;
+      --border: #ded5c7;
+      --red: #c9472f;
+      --red-dark: #a93624;
+      --green: #3f6748;
+      --blue: #1f5a7a;
+      --mustard: #d8a331;
+      --shadow: 0 24px 70px rgba(40, 32, 22, 0.14);
+      --radius: 28px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Inter", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(0, 0, 0, 0.04) 0 1px, transparent 1px),
+        radial-gradient(circle at 70% 40%, rgba(0, 0, 0, 0.035) 0 1px, transparent 1px),
+        radial-gradient(circle at 40% 80%, rgba(0, 0, 0, 0.025) 0 1px, transparent 1px),
+        var(--bg);
+      background-size: 34px 34px, 48px 48px, 64px 64px;
+    }
+
+    .page { min-height: 100vh; padding: 28px; overflow: hidden; position: relative; }
+    .shell { max-width: 1180px; margin: 0 auto; position: relative; z-index: 1; }
+
+    .shape { position: absolute; border-radius: 999px; opacity: 0.9; z-index: 0; pointer-events: none; }
+    .shape.red { width: 180px; height: 180px; background: var(--red); right: -60px; top: 120px; }
+    .shape.blue { width: 140px; height: 140px; background: var(--blue); right: 110px; bottom: 240px; }
+    .shape.mustard { width: 90px; height: 220px; background: var(--mustard); border-radius: 80px; left: -34px; top: 590px; transform: rotate(24deg); }
+
+    header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 0 54px; gap: 24px;
+    }
+
+    .brand { display: inline-flex; align-items: center; gap: 13px; text-decoration: none; color: var(--text); }
+    .brand-mark { width: 36px; height: 42px; position: relative; flex: 0 0 auto; }
+    .brand-mark::before { content: ""; position: absolute; width: 26px; height: 26px; background: var(--mustard); border-radius: 50%; left: 5px; top: 0; }
+    .brand-mark::after { content: ""; position: absolute; width: 26px; height: 14px; background: var(--blue); border-radius: 0 0 20px 20px; left: 5px; bottom: 0; }
+    .logo { font-family: "Cormorant Garamond", Georgia, serif; font-size: 34px; line-height: 1; font-weight: 700; letter-spacing: -0.04em; }
+
+    nav { display: flex; align-items: center; gap: 28px; font-size: 14px; font-weight: 700; color: rgba(21, 21, 21, 0.78); }
+    nav a, .small-link { text-decoration: none; color: inherit; }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; min-height: 52px;
+      padding: 0 22px; border-radius: 12px; font-weight: 800; font-size: 15px;
+      text-decoration: none; border: 0; transition: transform 150ms ease, box-shadow 150ms ease;
+      cursor: pointer; white-space: nowrap; font-family: "Inter", Arial, sans-serif;
+    }
+
+    .btn.primary { background: linear-gradient(180deg, var(--red), var(--red-dark)); color: #fffaf4; box-shadow: 0 14px 28px rgba(201, 71, 47, 0.22); }
+    .btn.secondary { color: var(--text); border: 1px solid rgba(21, 21, 21, 0.12); background: rgba(251, 247, 239, 0.72); }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:disabled { opacity: 0.7; cursor: wait; transform: none; }
+
+    .hero { display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 54px; align-items: center; padding-bottom: 64px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px; font-size: 13px; font-weight: 800; color: var(--green); }
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--red); }
+
+    h1 { margin: 0; max-width: 680px; font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(54px, 8vw, 104px); line-height: 0.86; letter-spacing: -0.055em; font-weight: 700; }
+    .green-word { color: var(--green); font-style: italic; }
+    .lead { max-width: 610px; margin: 28px 0 0; font-size: 18px; line-height: 1.55; color: var(--muted); }
+    .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+
+    .audience-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 34px; max-width: 620px; }
+    .audience-mini { display: flex; gap: 14px; align-items: flex-start; padding: 16px; border-radius: 20px; background: rgba(251, 247, 239, 0.64); border: 1px solid rgba(21,21,21,0.08); }
+    .audience-icon { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: rgba(63, 103, 72, 0.12); font-size: 21px; flex: 0 0 auto; }
+    .audience-mini:nth-child(2) .audience-icon { background: rgba(31, 90, 122, 0.12); }
+    .audience-mini strong { display: block; font-size: 14px; margin-bottom: 4px; color: var(--text); }
+    .audience-mini span { display: block; font-size: 13px; line-height: 1.4; color: var(--muted); }
+
+    .form-card {
+      position: relative; background: rgba(251, 247, 239, 0.94); border: 1px solid rgba(21, 21, 21, 0.08);
+      border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); overflow: hidden;
+    }
+    .form-card::before {
+      content: ""; position: absolute; inset: 0; opacity: 0.15; pointer-events: none;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(0, 0, 0, 0.05) 0 1px, transparent 1px),
+        radial-gradient(circle at 70% 40%, rgba(0, 0, 0, 0.035) 0 1px, transparent 1px);
+      background-size: 32px 32px, 46px 46px;
+    }
+    .form-content { position: relative; z-index: 1; }
+
+    .switch {
+      display: grid; grid-template-columns: 1fr 1fr; border: 1px solid rgba(21, 21, 21, 0.1);
+      border-radius: 16px; overflow: hidden; background: rgba(255,250,242,0.62); margin-bottom: 18px;
+    }
+    .switch button {
+      border: 0; background: transparent; padding: 18px 10px; font-family: "Inter", Arial, sans-serif;
+      font-weight: 800; color: var(--muted); cursor: pointer; position: relative;
+    }
+    .switch button.active { color: var(--green); background: rgba(255,255,255,0.52); }
+    .switch button.active::after { content: ""; position: absolute; height: 4px; background: var(--green); left: 26px; right: 26px; bottom: 0; border-radius: 10px 10px 0 0; }
+
+    .form-help { margin: 0 0 22px; color: var(--muted); font-size: 13px; line-height: 1.45; }
+    .field { margin-bottom: 14px; }
+    .field label { display: block; font-size: 12px; font-weight: 800; margin-bottom: 7px; }
+    .field input, .field select, .field textarea {
+      width: 100%; min-height: 46px; border: 1px solid var(--border); border-radius: 10px;
+      background: rgba(255, 252, 246, 0.88); padding: 0 15px; color: var(--text);
+      font-size: 14px; font-weight: 600; font-family: "Inter", Arial, sans-serif; outline: none;
+    }
+    .field textarea { padding-top: 12px; min-height: 84px; resize: vertical; }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: rgba(201, 71, 47, 0.55); box-shadow: 0 0 0 4px rgba(201, 71, 47, 0.08); }
+    .form-note { margin: 15px 0 0; text-align: center; color: var(--muted); font-size: 13px; font-weight: 700; }
+    .error { display:none; margin-top: 12px; padding: 12px; border-radius: 14px; background: rgba(201,71,47,0.1); color: var(--red-dark); font-size: 13px; font-weight: 700; line-height: 1.4; }
+
+    .entity-only { display: none; }
+    body.entity-mode .entity-only { display: block; }
+    body.entity-mode .person-copy { display: none; }
+
+    .section { margin-top: 98px; scroll-margin-top: 40px; }
+    .section-head { max-width: 720px; margin-bottom: 34px; }
+    .section.center .section-head { margin-left: auto; margin-right: auto; text-align: center; }
+    .section h2 { font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(42px, 5vw, 68px); line-height: 0.92; letter-spacing: -0.045em; margin: 0; }
+    .section p { color: var(--muted); line-height: 1.55; }
+
+    .steps, .grid-3 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 28px; }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .step, .card { background: rgba(251, 247, 239, 0.78); border: 1px solid rgba(21, 21, 21, 0.08); border-radius: 22px; padding: 22px; }
+    .step { min-height: 190px; }
+    .number { width: 34px; height: 34px; border-radius: 50%; background: var(--text); color: var(--bg); display: flex; align-items: center; justify-content: center; font-weight: 800; margin-bottom: 18px; }
+    .step h3, .card h3 { margin: 0 0 8px; font-size: 17px; letter-spacing: -0.03em; }
+    .step p, .card p { margin: 0; font-size: 14px; line-height: 1.45; color: var(--muted); }
+
+    .tag-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .tag { border: 1px solid rgba(21,21,21,0.1); border-radius: 999px; padding: 9px 12px; font-size: 13px; color: var(--muted); background: rgba(255,250,242,0.55); font-weight: 700; }
+
+    .price-card { min-height: 250px; display: flex; flex-direction: column; justify-content: space-between; }
+    .price-label { display: inline-flex; width: fit-content; padding: 8px 11px; border-radius: 999px; background: rgba(201,71,47,0.1); color: var(--red-dark); font-size: 12px; font-weight: 800; margin-bottom: 16px; }
+    .price { font-family: "Cormorant Garamond", Georgia, serif; font-size: 44px; line-height: 1; letter-spacing: -0.04em; margin: 0 0 10px; }
+
+    footer {
+      margin-top: 80px; padding: 30px 0 10px; color: var(--muted); font-size: 13px;
+      border-top: 1px solid rgba(21, 21, 21, 0.08); display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+    }
+
+    @media (max-width: 980px) {
+      nav { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .steps, .grid-3 { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 620px) {
+      .page { padding: 18px; }
+      header { padding-bottom: 34px; }
+      .small-link { display: none; }
+      .steps, .grid-3, .grid-2, .audience-row { grid-template-columns: 1fr; }
+      .form-card { padding: 20px; }
+      .switch button { font-size: 13px; }
+      footer { display: block; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <div class="shape red"></div>
+    <div class="shape blue"></div>
+    <div class="shape mustard"></div>
+
+    <div class="shell">
+      <header>
+        <a class="brand" href="#">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="logo">Juntos</span>
+        </a>
+
+        <nav aria-label="Navegación principal">
+          <a href="#como-funciona">Cómo funciona</a>
+          <a href="#actividades">Actividades</a>
+          <a href="#comunidades">Comunidades</a>
+          <a href="#precios">Precios</a>
+          <a href="#nosotros">Nosotros</a>
+        </nav>
+
+        <div class="nav-actions">
+          <a class="small-link" href="#demo">Demo</a>
+          <a class="btn primary" href="#demo">Registrarme</a>
+        </div>
+      </header>
+
+      <section class="hero" id="demo">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> Beneficios sin depender de una empresa</div>
+          <h1>Accedé a mejores actividades, <span class="green-word">juntos.</span></h1>
+          <p class="lead">
+            Juntos ayuda a personas y organizaciones a convertir intereses dispersos en demanda organizada
+            para acceder a mejores actividades y servicios de bienestar.
+          </p>
+
+          <div class="actions">
+            <a class="btn primary" href="#demo">Probar demo</a>
+            <a class="btn secondary" href="#como-funciona">Ver cómo funciona</a>
+          </div>
+
+          <div class="audience-row">
+            <div class="audience-mini">
+              <div class="audience-icon">👤</div>
+              <div>
+                <strong>Para personas</strong>
+                <span>Encontrá tu grupo ideal y participá en mejores actividades cerca tuyo.</span>
+              </div>
+            </div>
+
+            <div class="audience-mini">
+              <div class="audience-icon">🏛️</div>
+              <div>
+                <strong>Para entidades</strong>
+                <span>Relevá demanda real y diseñá propuestas para tu comunidad.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="form-card" aria-label="Formulario de demo">
+          <form class="form-content" id="juntos-form">
+            <div class="switch" role="tablist" aria-label="Tipo de usuario">
+              <button class="active" type="button" id="person-tab">👤 Soy una persona</button>
+              <button type="button" id="entity-tab">🏛️ Soy una entidad</button>
+            </div>
+
+            <p class="form-help person-copy">
+              Contanos qué actividad buscás y detectamos personas compatibles cerca tuyo.
+            </p>
+            <p class="form-help entity-only">
+              Relevá demanda estimada de tu comunidad, club, municipio o sociedad de fomento.
+            </p>
+
+            <input type="hidden" name="tipo_usuario" id="tipo_usuario" value="persona" />
+
+            <div class="field entity-only">
+              <label for="nombre_entidad">Nombre de la entidad</label>
+              <input id="nombre_entidad" name="nombre_entidad" placeholder="Ej: Sociedad de Fomento Adrogué" />
+            </div>
+
+            <div class="field">
+              <label for="actividad">Actividad</label>
+              <select id="actividad" name="actividad" required>
+                <option value="">Seleccioná una actividad</option>
+                <option>Gimnasio</option>
+                <option>Pilates</option>
+                <option>Yoga</option>
+                <option>Funcional</option>
+                <option>CrossFit</option>
+                <option>Boxeo</option>
+                <option>Natación</option>
+                <option>Danza</option>
+                <option>Otro</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="zona">Zona</label>
+              <input id="zona" name="zona" placeholder="Ej: Palermo, Adrogué, Berazategui" required />
+            </div>
+
+            <div class="field">
+              <label for="presupuesto_max">Presupuesto máximo mensual</label>
+              <input id="presupuesto_max" name="presupuesto_max" type="number" placeholder="Ej: 40000" required />
+            </div>
+
+            <div class="field">
+              <label for="franja_horaria">Franja horaria</label>
+              <select id="franja_horaria" name="franja_horaria" required>
+                <option value="">Seleccioná una franja</option>
+                <option>Mañana: 07:00 a 12:00</option>
+                <option>Mediodía: 12:00 a 15:00</option>
+                <option>Tarde: 15:00 a 18:00</option>
+                <option>Después del trabajo: 18:00 a 21:00</option>
+                <option>Noche: 21:00 a 23:00</option>
+                <option>Flexible</option>
+              </select>
+            </div>
+
+            <div class="field entity-only">
+              <label for="cantidad_estimada">Cantidad estimada de personas interesadas</label>
+              <input id="cantidad_estimada" name="cantidad_estimada" type="number" min="1" value="25" />
+            </div>
+
+            <div class="field">
+              <label for="comentario">Comentario</label>
+              <textarea id="comentario" name="comentario" placeholder="Ej: quiero entrenar después del trabajo y pagar menos"></textarea>
+            </div>
+
+            <button class="btn primary" type="submit" id="submit-btn" style="width:100%; margin-top:10px;">
+              Encontrar oportunidades
+            </button>
+
+            <p class="form-note">🔒 Demo gratuita con datos ficticios</p>
+            <div class="error" id="error-box"></div>
+          </form>
+        </aside>
+      </section>
+
+      <section class="section center" id="como-funciona">
+        <div class="section-head">
+          <h2>Cómo funciona</h2>
+          <p>Un proceso simple que funciona para personas sueltas, grupos y entidades que quieren entender qué necesita su comunidad.</p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="number">1</div>
+            <h3>Detectamos demanda</h3>
+            <p>Registramos intereses, zonas, presupuestos y horarios para entender necesidades reales.</p>
+          </div>
+          <div class="step">
+            <div class="number">2</div>
+            <h3>Agrupamos solicitudes</h3>
+            <p>El sistema identifica personas compatibles y oportunidades de demanda colectiva.</p>
+          </div>
+          <div class="step">
+            <div class="number">3</div>
+            <h3>Procesamos con n8n</h3>
+            <p>n8n clasifica, calcula compatibilidad, guarda en Sheets y responde a la web.</p>
+          </div>
+          <div class="step">
+            <div class="number">4</div>
+            <h3>Mostramos opciones</h3>
+            <p>La demo muestra espacios ficticios cercanos y oportunidades grupales.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="actividades">
+        <div class="section-head">
+          <h2>Actividades</h2>
+          <p>El MVP empieza por bienestar físico, pero el modelo puede ampliarse a actividades recreativas, culturales, comunitarias y de salud preventiva.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>Fitness y entrenamiento</h3>
+            <p>Gimnasios, funcional, CrossFit, boxeo, natación y actividades de fuerza.</p>
+            <div class="tag-list">
+              <span class="tag">Gimnasio</span><span class="tag">Funcional</span><span class="tag">Boxeo</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Bienestar y movimiento</h3>
+            <p>Pilates, yoga, danza, movilidad y actividades de bajo impacto.</p>
+            <div class="tag-list">
+              <span class="tag">Pilates</span><span class="tag">Yoga</span><span class="tag">Danza</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Actividades comunitarias</h3>
+            <p>Propuestas impulsadas por clubes, municipios, sociedades de fomento y universidades.</p>
+            <div class="tag-list">
+              <span class="tag">Barrio</span><span class="tag">Club</span><span class="tag">Comunidad</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="comunidades">
+        <div class="section-head">
+          <h2>Comunidades</h2>
+          <p>Juntos no es solo una herramienta para personas: también ayuda a entidades a relevar demanda y tomar decisiones con datos simples.</p>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Para municipalidades y barrios</h3>
+            <p>Permite entender qué actividades necesita una zona, en qué horarios y con qué presupuesto estimado.</p>
+          </div>
+          <div class="card">
+            <h3>Para clubes, universidades y sociedades de fomento</h3>
+            <p>Convierte intereses dispersos en señales concretas: cantidad de personas, ubicación, franja horaria y tipo de actividad.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="precios">
+        <div class="section-head">
+          <h2>Precios</h2>
+          <p>Modelo conceptual para el MVP. La demo no procesa pagos: muestra cómo podría organizarse el acceso según tipo de usuario.</p>
+        </div>
+        <div class="grid-3">
+          <div class="card price-card">
+            <div><span class="price-label">Personas</span><p class="price">$0</p><h3>Registro de interés</h3><p>Las personas pueden registrar qué buscan y sumarse a grupos en formación.</p></div>
+          </div>
+          <div class="card price-card">
+            <div><span class="price-label">Comunidades</span><p class="price">Plan comunidad</p><h3>Relevamiento de demanda</h3><p>Para entidades que quieren entender necesidades y diseñar propuestas locales.</p></div>
+          </div>
+          <div class="card price-card">
+            <div><span class="price-label">Proveedores</span><p class="price">Plan partner</p><h3>Oportunidades grupales</h3><p>Para gimnasios, estudios o clubes que quieren recibir demanda agrupada.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="nosotros">
+        <div class="section-head">
+          <h2>Nosotros</h2>
+          <p>Juntos nace de una pregunta simple: ¿por qué los beneficios de bienestar dependen de trabajar en una empresa grande? Este MVP explora cómo la demanda colectiva puede ayudar a personas y comunidades a acceder a mejores actividades.</p>
+        </div>
+      </section>
+
+      <footer>
+        <span>Juntos · MVP creado para CoderCup</span>
+        <span>Frontend en Vercel · Backend con n8n + Google Sheets</span>
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    // Reemplazá esta URL cuando tengas el Webhook de producción de n8n Cloud.
+    // Ejemplo: https://tu-instancia.app.n8n.cloud/webhook/juntos-demo
+    const N8N_WEBHOOK_URL = "https://TU-N8N-CLOUD.app.n8n.cloud/webhook/juntos-demo";
+
+    const body = document.body;
+    const personTab = document.getElementById("person-tab");
+    const entityTab = document.getElementById("entity-tab");
+    const tipoUsuario = document.getElementById("tipo_usuario");
+    const form = document.getElementById("juntos-form");
+    const submitBtn = document.getElementById("submit-btn");
+    const errorBox = document.getElementById("error-box");
+
+    function setMode(mode) {
+      const isEntity = mode === "entidad";
+      body.classList.toggle("entity-mode", isEntity);
+      personTab.classList.toggle("active", !isEntity);
+      entityTab.classList.toggle("active", isEntity);
+      tipoUsuario.value = isEntity ? "entidad" : "persona";
+    }
+
+    personTab.addEventListener("click", () => setMode("persona"));
+    entityTab.addEventListener("click", () => setMode("entidad"));
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      errorBox.style.display = "none";
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Procesando demanda...";
+
+      const formData = new FormData(form);
+
+      if (formData.get("tipo_usuario") === "persona") {
+        formData.set("cantidad_estimada", "1");
+      }
+
+      const payload = Object.fromEntries(formData.entries());
+
+      try {
+        // Usamos x-www-form-urlencoded para evitar problemas de CORS/preflight en la demo.
+        const response = await fetch(N8N_WEBHOOK_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+          },
+          body: new URLSearchParams(payload)
+        });
+
+        if (!response.ok) {
+          throw new Error("El webhook respondió con error " + response.status);
+        }
+
+        const data = await response.json();
+        sessionStorage.setItem("juntos_resultado", JSON.stringify(data));
+
+        const actividad = encodeURIComponent(data.actividad || payload.actividad || "");
+        const zona = encodeURIComponent(data.zona || payload.zona || "");
+
+        window.location.href = `./resultados.html?actividad=${actividad}&zona=${zona}`;
+      } catch (error) {
+        console.error(error);
+        errorBox.textContent = "No pudimos conectar con la demo de n8n. Revisá que el webhook esté activo y que hayas reemplazado la URL en el código.";
+        errorBox.style.display = "block";
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Encontrar oportunidades";
+      }
+    });
+  </script>
+</body>
+</html>
