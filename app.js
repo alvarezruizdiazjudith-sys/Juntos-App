@@ -130,7 +130,10 @@ form.addEventListener('submit', async (event) => {
     const raw = await response.json().catch(() => ({}));
 
     if (!response.ok) {
-      throw new Error(raw.error || raw.message || 'No pudimos procesar tu búsqueda.');
+      const details = raw.details && typeof raw.details === 'object'
+        ? JSON.stringify(raw.details)
+        : raw.details;
+      throw new Error([raw.error || raw.message || 'No pudimos procesar tu búsqueda.', details].filter(Boolean).join(' '));
     }
 
     const backend = getResponseData(raw);
@@ -142,6 +145,6 @@ form.addEventListener('submit', async (event) => {
     console.error('Error enviando la solicitud a JUNTOS:', error);
     submitBtn.disabled = false;
     submitBtn.textContent = originalLabel;
-    window.alert('No pudimos conectar con JUNTOS en este momento. Probá nuevamente en unos segundos.');
+    window.alert(`No pudimos conectar con JUNTOS. ${error.message || 'Probá nuevamente en unos segundos.'}`);
   }
 });
