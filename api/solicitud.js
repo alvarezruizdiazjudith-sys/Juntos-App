@@ -1,4 +1,4 @@
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).json({ error: 'Método no permitido' });
@@ -40,7 +40,8 @@ export default async function handler(req, res) {
   } catch (error) {
     console.error('Error conectando con n8n:', error);
     return res.status(502).json({
-      error: 'No se pudo conectar con n8n.'
+      error: 'No se pudo conectar con n8n.',
+      details: error && error.message ? error.message : String(error)
     });
   }
-}
+};
