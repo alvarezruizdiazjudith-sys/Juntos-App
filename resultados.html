@@ -11,17 +11,15 @@
 
   <style>
     :root {
-      --bg: #f7f2e8;
-      --card: #fbf7ef;
+      --bg: #f0e4db;
+      --card: #f7eee7;
       --text: #151515;
       --muted: #6d675f;
       --border: #ded5c7;
-      --red: #c9472f;
-      --red-dark: #a93624;
-      --green: #244f35;
-      --blue: #1f5a7a;
-      --mustard: #d8a331;
-      --shadow: 0 24px 70px rgba(40, 32, 22, 0.14);
+      --red: #d24b2f;
+      --red-dark: #b73c25;
+      --green: #113b2c;
+      --shadow: 0 18px 48px rgba(18, 42, 31, 0.1);
     }
 
     * { box-sizing: border-box; }
@@ -29,11 +27,7 @@
       margin: 0;
       font-family: "Inter", Arial, sans-serif;
       color: var(--text);
-      background:
-        radial-gradient(circle at 20% 20%, rgba(0, 0, 0, 0.035) 0 1px, transparent 1px),
-        radial-gradient(circle at 70% 40%, rgba(0, 0, 0, 0.025) 0 1px, transparent 1px),
-        var(--bg);
-      background-size: 34px 34px, 52px 52px;
+      background: var(--bg);
     }
 
     .page { min-height: 100vh; padding: 28px; }
@@ -132,7 +126,7 @@
     .summary-card {
       background: rgba(251, 247, 239, 0.94);
       border: 1px solid rgba(21, 21, 21, 0.08);
-      border-radius: 28px;
+      border-radius: 12px;
       padding: 26px;
       box-shadow: var(--shadow);
     }
@@ -163,7 +157,7 @@
       padding: 14px;
       background: rgba(255, 250, 242, 0.72);
       border: 1px solid rgba(21,21,21,0.08);
-      border-radius: 18px;
+      border-radius: 8px;
     }
 
     .metric strong {
@@ -184,7 +178,7 @@
     .message {
       margin: 26px 0;
       padding: 18px;
-      border-radius: 20px;
+      border-radius: 8px;
       background: rgba(36,79,53,0.12);
       border: 1px solid rgba(36,79,53,0.18);
       color: var(--green);
@@ -201,7 +195,7 @@
 
     .pill {
       border: 1px solid rgba(21,21,21,0.1);
-      border-radius: 999px;
+      border-radius: 6px;
       padding: 9px 12px;
       color: var(--muted);
       background: rgba(251,247,239,0.7);
@@ -218,7 +212,7 @@
     .result-card {
       background: rgba(251, 247, 239, 0.84);
       border: 1px solid rgba(21,21,21,0.08);
-      border-radius: 24px;
+      border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 18px 50px rgba(40,32,22,0.08);
     }
@@ -226,33 +220,16 @@
     .visual {
       height: 160px;
       position: relative;
-      background: linear-gradient(135deg, rgba(36,79,53,0.95), rgba(63,103,72,0.88));
+      background-color: var(--green);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
       overflow: hidden;
     }
 
-    .visual::before {
-      content: "";
-      position: absolute;
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-      background: var(--mustard);
-      left: -26px;
-      top: 46px;
-      opacity: 0.88;
-    }
-
-    .visual::after {
-      content: "";
-      position: absolute;
-      width: 190px;
-      height: 190px;
-      border-radius: 50%;
-      background: var(--red);
-      right: -72px;
-      top: 26px;
-      opacity: 0.88;
-    }
+    .result-card:nth-child(1) .visual { background-image: url('./assets/collage/participar-explorador.png'); }
+    .result-card:nth-child(2) .visual { background-image: url('./assets/collage/participar-manada.png'); }
+    .result-card:nth-child(3) .visual { background-image: url('./assets/collage/participar-comunidad.png'); }
 
     .result-content { padding: 20px; }
 
@@ -260,7 +237,7 @@
       display: inline-flex;
       width: fit-content;
       padding: 7px 10px;
-      border-radius: 999px;
+      border-radius: 6px;
       background: rgba(36,79,53,0.1);
       color: var(--green);
       font-size: 12px;
@@ -302,7 +279,7 @@
     .status {
       margin-top: 16px;
       padding: 14px;
-      border-radius: 16px;
+      border-radius: 8px;
       font-size: 13px;
       line-height: 1.35;
       font-weight: 800;
@@ -320,8 +297,8 @@
     .cta-section {
       margin-top: 44px;
       padding: 28px;
-      border-radius: 28px;
-      background: #151515;
+      border-radius: 10px;
+      background: var(--green);
       color: #fffaf4;
       display: grid;
       grid-template-columns: 1fr auto;
@@ -373,11 +350,10 @@
 
       <section class="hero">
         <div>
-          <div class="eyebrow"><span class="dot"></span> Resultados demo</div>
+          <div class="eyebrow"><span class="dot"></span> Coincidencias encontradas</div>
           <h1 id="title">Opciones cerca tuyo</h1>
           <p class="lead">
-            Estas opciones representan cómo Juntos podría mostrar espacios disponibles o grupos en formación
-            después de procesar una solicitud.
+            Ordenamos estas opciones según la actividad, la zona, el horario y el presupuesto de tu búsqueda.
           </p>
         </div>
 
@@ -406,23 +382,19 @@
       <div class="filter-note">
         <span class="pill" id="pill-activity">Actividad: —</span>
         <span class="pill" id="pill-zone">Zona: —</span>
-        <span class="pill">Datos demo</span>
       </div>
 
       <section class="results-grid" id="results"></section>
 
       <section class="cta-section">
         <div>
-          <h2>¿Querés sumarte a una oportunidad grupal?</h2>
-          <p>
-            En una versión real, desde acá podrías reservar, dejar tus datos o solicitar que Juntos negocie
-            condiciones grupales con el proveedor.
-          </p>
+          <h2>¿Querés explorar otra búsqueda?</h2>
+          <p>Volvé al formulario y probá una actividad, zona, horario o presupuesto diferente.</p>
         </div>
         <a class="btn primary" href="./index.html#demo">Cargar otra solicitud</a>
       </section>
 
-      <footer>JUNTOS · Página de resultados para demo CoderCup</footer>
+      <footer>JUNTOS · Opciones y coincidencias para tu búsqueda</footer>
     </div>
   </main>
 
@@ -446,7 +418,7 @@
         zona: fallbackZone,
         personas_compatibles: 31,
         demanda_suficiente: false,
-        mensaje_usuario: "Estás viendo resultados ficticios de fallback porque todavía no hay respuesta de n8n en esta sesión.",
+        mensaje_usuario: "No encontramos una búsqueda guardada. Te mostramos una selección inicial para que puedas explorar el recorrido.",
         resultados: fallbackResults
       };
     }
