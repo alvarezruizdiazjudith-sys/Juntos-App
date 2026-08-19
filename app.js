@@ -81,7 +81,7 @@ function buildResults(data) {
     horario: place.horario,
     precio_estimado: `$${place.precio.toLocaleString('es-AR')}`,
     demanda: demandBase + (index * 4),
-    estado: index === 0 ? 'Mejor coincidencia' : index === 1 ? 'Oportunidad para negociar' : 'Grupo en formación'
+    estado: index === 0 ? 'Mejor coincidencia' : index === 1 ? 'Hay una manada posible' : 'Interés en formación'
   }));
 }
 
@@ -102,8 +102,8 @@ form.addEventListener('submit', async (event) => {
     personas_compatibles: personasCompatibles,
     demanda_suficiente: personasCompatibles >= 25,
     mensaje_usuario: data.tipo_usuario === 'entidad'
-      ? 'Encontramos señales de demanda compatibles con la comunidad que describiste.'
-      : 'Encontramos opciones y personas con intereses similares para tu búsqueda.',
+      ? 'Encontramos búsquedas que pueden ayudarte a pensar una propuesta para tu organización barrial.'
+      : 'Tu búsqueda coincide con otras de la zona y con estas opciones.',
     resultados
   };
 

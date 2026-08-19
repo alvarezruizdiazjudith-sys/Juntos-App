@@ -350,24 +350,24 @@
 
       <section class="hero">
         <div>
-          <div class="eyebrow"><span class="dot"></span> Coincidencias encontradas</div>
+          <div class="eyebrow"><span class="dot"></span> Lo que coincide con tu búsqueda</div>
           <h1 id="title">Opciones cerca tuyo</h1>
           <p class="lead">
-            Ordenamos estas opciones según la actividad, la zona, el horario y el presupuesto de tu búsqueda.
+            Primero miramos tus condiciones. Después, buscamos dónde aparecen coincidencias.
           </p>
         </div>
 
         <aside class="summary-card">
-          <h2>Demanda detectada</h2>
-          <p id="summary-text">Procesamos tu solicitud y detectamos oportunidades compatibles.</p>
+          <h2>Lo que empieza a verse</h2>
+          <p id="summary-text">Tu búsqueda puede revelar un interés que hasta ahora estaba disperso.</p>
           <div class="metric-row">
             <div class="metric">
               <strong id="metric-people">0</strong>
-              <span>personas compatibles</span>
+              <span>búsquedas afines</span>
             </div>
             <div class="metric">
               <strong id="metric-options">0</strong>
-              <span>opciones sugeridas</span>
+              <span>opciones encontradas</span>
             </div>
             <div class="metric">
               <strong id="metric-status">—</strong>
@@ -388,13 +388,13 @@
 
       <section class="cta-section">
         <div>
-          <h2>¿Querés explorar otra búsqueda?</h2>
-          <p>Volvé al formulario y probá una actividad, zona, horario o presupuesto diferente.</p>
+          <h2>¿Querés probar otra combinación?</h2>
+          <p>Cambiá una condición y mirá qué otras coincidencias aparecen.</p>
         </div>
-        <a class="btn primary" href="./index.html#demo">Cargar otra solicitud</a>
+        <a class="btn primary" href="./index.html#buscador">Volver a buscar</a>
       </section>
 
-      <footer>JUNTOS · Opciones y coincidencias para tu búsqueda</footer>
+      <footer>JUNTOS · Lo que el barrio busca, más visible</footer>
     </div>
   </main>
 
@@ -407,9 +407,9 @@
     const fallbackZone = (params.get("zona") || "adrogué").toLowerCase();
 
     const fallbackResults = [
-      { nombre: "Fit Sur Club", tipo: "Funcional + entrenamiento", zona: "Adrogué", horario: "18:00 a 21:00", precio_estimado: "$42.000", demanda: 18, estado: "Grupo en formación" },
-      { nombre: "Espacio Movimiento", tipo: "Pilates y movilidad", zona: "Burzaco", horario: "Mañana y tarde", precio_estimado: "$48.000", demanda: 24, estado: "Oportunidad para negociar" },
-      { nombre: "Club Social Adrogué", tipo: "Gimnasio + actividades barriales", zona: "Adrogué", horario: "Flexible", precio_estimado: "$35.000", demanda: 31, estado: "Listo para propuesta grupal" }
+      { nombre: "Fit Sur Club", tipo: "Funcional + entrenamiento", zona: "Adrogué", horario: "18:00 a 21:00", precio_estimado: "$42.000", demanda: 18, estado: "Interés en formación" },
+      { nombre: "Espacio Movimiento", tipo: "Pilates y movilidad", zona: "Burzaco", horario: "Mañana y tarde", precio_estimado: "$48.000", demanda: 24, estado: "Hay una manada posible" },
+      { nombre: "Club Social Adrogué", tipo: "Gimnasio + actividades barriales", zona: "Adrogué", horario: "Flexible", precio_estimado: "$35.000", demanda: 31, estado: "Mejor coincidencia" }
     ];
 
     if (!data) {
@@ -418,7 +418,7 @@
         zona: fallbackZone,
         personas_compatibles: 31,
         demanda_suficiente: false,
-        mensaje_usuario: "No encontramos una búsqueda guardada. Te mostramos una selección inicial para que puedas explorar el recorrido.",
+        mensaje_usuario: "No encontramos una búsqueda guardada. Te mostramos una selección inicial para recorrer JUNTOS.",
         resultados: fallbackResults
       };
     }
@@ -435,9 +435,9 @@
     document.getElementById("metric-people").textContent = data.personas_compatibles || 0;
     document.getElementById("metric-options").textContent = resultados.length;
     document.getElementById("metric-status").textContent = data.demanda_suficiente ? "Sí" : "En formación";
-    document.getElementById("message-box").textContent = data.mensaje_usuario || "Solicitud procesada.";
+    document.getElementById("message-box").textContent = data.mensaje_usuario || "Estas son las coincidencias que pudimos reunir.";
     document.getElementById("summary-text").textContent =
-      `Detectamos ${data.personas_compatibles || 0} personas potencialmente compatibles para ${actividad} en ${zona}.`;
+      `Hay ${data.personas_compatibles || 0} búsquedas afines a ${actividad} en ${zona}.`;
 
     const container = document.getElementById("results");
 
@@ -462,10 +462,10 @@
       card.className = "result-card";
 
       const demanda = item.demanda || item.personas || item.personas_compatibles || "—";
-      const estado = String(item.estado || "Grupo en formación");
+      const estado = String(item.estado || "Interés en formación");
       const estadoNormalizado = estado.toLowerCase();
-      const good = estadoNormalizado.includes("suficiente") ||
-                   estadoNormalizado.includes("negociar") ||
+      const good = estadoNormalizado.includes("coincidencia") ||
+                   estadoNormalizado.includes("manada") ||
                    estadoNormalizado.includes("listo");
 
       const visual = document.createElement("div");
@@ -482,7 +482,7 @@
         content,
         "p",
         "",
-        item.descripcion || "Opción sugerida por compatibilidad de zona, horario y presupuesto."
+        item.descripcion || "Esta opción se acerca a las condiciones que marcaste en tu búsqueda."
       );
 
       const details = document.createElement("div");
@@ -490,7 +490,7 @@
       appendDetail(details, "Zona", item.zona || zona);
       appendDetail(details, "Horario", item.horario || "Flexible");
       appendDetail(details, "Precio", item.precio_estimado || "A validar");
-      appendDetail(details, "Demanda", `${demanda} personas`);
+      appendDetail(details, "Búsquedas afines", `${demanda}`);
       content.appendChild(details);
 
       appendTextElement(content, "div", `status${good ? " good" : ""}`, estado);
