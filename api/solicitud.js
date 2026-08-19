@@ -5,7 +5,7 @@ module.exports = async function handler(req, res) {
   }
 
   const webhookUrl = process.env.N8N_WEBHOOK_URL ||
-    'https://behalf-openings-practices-concluded.trycloudflare.com/webhook/juntos/solicitud';
+    'https://radical-accompanied-cartridges-third.trycloudflare.com/webhook/juntos/solicitud';
 
   try {
     const n8nResponse = await fetch(webhookUrl, {
