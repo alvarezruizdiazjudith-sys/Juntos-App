@@ -41,6 +41,11 @@ function getResponseData(raw) {
   return raw && typeof raw === 'object' ? raw : {};
 }
 
+function formatBudget(value) {
+  const amount = Number(value || 0);
+  return amount ? `Hasta $${amount.toLocaleString('es-AR')}` : 'A definir';
+}
+
 function normalizeBackendResult(data, backend) {
   const miembros = Number(
     backend.cantidad_miembros ??
@@ -55,9 +60,14 @@ function normalizeBackendResult(data, backend) {
     false
   );
 
+  const estadoGrupo = backend.estado_grupo || (grupoFormado ? 'Grupo formado' : 'En formación');
+  const nivelDemanda = backend.nivel_demanda || 'Demanda registrada';
+  const actividad = data.actividad || 'Bienestar';
+  const zona = data.zona || 'Tu zona';
+
   return {
-    actividad: data.actividad || 'Bienestar',
-    zona: data.zona || 'Tu zona',
+    actividad,
+    zona,
     tipo_usuario: data.tipo_usuario || 'persona',
     personas_compatibles: miembros,
     demanda_suficiente: grupoFormado,
@@ -68,9 +78,24 @@ function normalizeBackendResult(data, backend) {
     solicitud_id: backend.solicitud_id || null,
     grupo_id: backend.grupo_id || null,
     grupo_formado: grupoFormado,
-    nivel_demanda: backend.nivel_demanda || null,
-    estado_grupo: backend.estado_grupo || (grupoFormado ? 'Grupo formado' : 'En formación'),
-    backend_ok: backend.ok !== false
+    nivel_demanda: nivelDemanda,
+    estado_grupo: estadoGrupo,
+    backend_ok: backend.ok !== false,
+    resultados: [
+      {
+        nombre: backend.grupo_id ? `Manada ${backend.grupo_id}` : 'Demanda en tu zona',
+        tipo: nivelDemanda,
+        actividad,
+        zona,
+        horario: data.franja_horaria || 'Flexible',
+        precio_estimado: formatBudget(data.presupuesto_max),
+        demanda: miembros,
+        estado: estadoGrupo,
+        descripcion: grupoFormado
+          ? 'Tu búsqueda ya forma parte de un grupo con condiciones compatibles.'
+          : 'Tu búsqueda quedó registrada y se irá agrupando con otras compatibles de la zona.'
+      }
+    ]
   };
 }
 
