@@ -3,47 +3,60 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="JUNTOS conecta personas, grupos y comunidades con mejores oportunidades de bienestar a partir de demanda compartida." />
+  <meta name="description" content="JUNTOS agrupa personas con intereses compatibles para crear mejores oportunidades de acceso a actividades de bienestar." />
+  <meta name="theme-color" content="#173f2c" />
+  <meta property="og:title" content="JUNTOS | Accedé a mejores actividades, juntos" />
+  <meta property="og:description" content="Encontrá actividades según tu zona, horario y presupuesto. Cuando buscamos juntos, accedemos mejor." />
+  <meta property="og:type" content="website" />
   <title>JUNTOS | Bienestar compartido</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-  <main>
-    <div class="shell">
-      <header>
-        <a class="brand" href="#">JUNTOS</a>
-        <nav aria-label="Navegación principal">
-          <a href="#como-funciona">Cómo funciona</a>
-          <a href="#para-quien">Para quién es</a>
-          <a href="#planes">Planes</a>
-          <a href="#nosotros">Nosotros</a>
-        </nav>
-        <a class="btn primary header-cta" href="#demo">Probar demo</a>
-      </header>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
-      <section class="hero" id="demo">
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="#inicio" aria-label="JUNTOS, ir al inicio">JUNTOS<span>.</span></a>
+      <nav aria-label="Navegación principal">
+        <a href="#propuesta">Qué cambia</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#para-quien">Para quién es</a>
+      </nav>
+      <a class="btn btn-small btn-primary header-cta" href="#buscador">Probar la demo</a>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="hero" id="inicio">
+      <div class="hero-orbit orbit-one" aria-hidden="true"></div>
+      <div class="hero-orbit orbit-two" aria-hidden="true"></div>
+      <div class="shell hero-grid">
         <div class="hero-copy">
-          <div class="eyebrow">Bienestar compartido</div>
-          <h1>Accedé a mejores actividades, juntos.</h1>
-          <p class="lead">JUNTOS conecta personas que buscan algo parecido para descubrir actividades cercanas y generar mejores oportunidades de acceso.</p>
-          <div class="hero-proof" aria-label="Beneficios principales">
-            <span>Según tu zona</span>
-            <span>Según tu horario</span>
-            <span>Según tu presupuesto</span>
-          </div>
+          <p class="eyebrow"><span></span> Bienestar que empieza cerca</p>
+          <h1>Accedé a mejores actividades, <em>juntos.</em></h1>
+          <p class="hero-lead">Decinos qué buscás, dónde, cuándo y cuánto podés pagar. JUNTOS encuentra coincidencias y convierte búsquedas individuales en oportunidades colectivas.</p>
+
           <div class="hero-actions">
-            <a class="btn primary" href="#buscador">Encontrar opciones</a>
-            <a class="btn secondary" href="#idea-juntos">Entender cómo funciona</a>
+            <a class="btn btn-primary" href="#buscador">Encontrar opciones <span aria-hidden="true">→</span></a>
+            <a class="text-link" href="#como-funciona">Ver cómo funciona <span aria-hidden="true">↓</span></a>
           </div>
+
+          <ul class="hero-facts" aria-label="Características de la demo">
+            <li><strong>Sin registro</strong><span>Probala en menos de un minuto</span></li>
+            <li><strong>Hecho para tu realidad</strong><span>Zona, horario y presupuesto</span></li>
+          </ul>
         </div>
 
         <aside class="search-card" id="buscador" aria-label="Buscador de oportunidades">
+          <div class="card-kicker"><span class="status-dot" aria-hidden="true"></span> Demo interactiva</div>
           <form id="juntos-form">
-            <h2>Encontrá tu mejor opción</h2>
-            <p class="helper">Contanos qué necesitás. La demo simula coincidencias y demanda en tu zona.</p>
+            <div class="form-heading">
+              <h2>¿Qué estás buscando?</h2>
+              <p>Completá estos datos y mirá qué oportunidades aparecen.</p>
+            </div>
 
             <div class="switch" role="tablist" aria-label="Tipo de usuario">
               <button type="button" role="tab" id="person-tab" aria-selected="true">Soy un explorador</button>
@@ -56,55 +69,40 @@
                 <label for="actividad">Actividad</label>
                 <select id="actividad" name="actividad" data-required="true" required>
                   <option value="">Elegí una actividad</option>
-                  <option>Yoga</option>
-                  <option>Funcional</option>
-                  <option>Boxeo</option>
-                  <option>Pilates</option>
-                  <option>Gimnasio</option>
-                  <option>Natación</option>
-                  <option>Danza</option>
-                </select>
-              </div>
-              <div class="field" data-mode="persona">
-                <label for="presupuesto_max">Presupuesto</label>
-                <select id="presupuesto_max" name="presupuesto_max" data-required="true" required>
-                  <option value="">Elegí tu rango</option>
-                  <option value="30000">Hasta $30.000</option>
-                  <option value="50000">Hasta $50.000</option>
-                  <option value="70000">Hasta $70.000</option>
-                  <option value="100000">Hasta $100.000</option>
+                  <option>Yoga</option><option>Funcional</option><option>Boxeo</option><option>Pilates</option>
+                  <option>Gimnasio</option><option>Natación</option><option>Danza</option>
                 </select>
               </div>
               <div class="field" data-mode="persona">
                 <label for="zona">Zona</label>
-                <input id="zona" name="zona" placeholder="Ej: Palermo, Adrogué..." data-required="true" required />
+                <input id="zona" name="zona" placeholder="Ej: Palermo, Adrogué..." autocomplete="address-level2" data-required="true" required />
+              </div>
+              <div class="field" data-mode="persona">
+                <label for="presupuesto_max">Presupuesto mensual</label>
+                <select id="presupuesto_max" name="presupuesto_max" data-required="true" required>
+                  <option value="">Elegí tu rango</option>
+                  <option value="30000">Hasta $30.000</option><option value="50000">Hasta $50.000</option>
+                  <option value="70000">Hasta $70.000</option><option value="100000">Hasta $100.000</option>
+                </select>
               </div>
               <div class="field" data-mode="persona">
                 <label for="franja_horaria">Horario preferido</label>
                 <select id="franja_horaria" name="franja_horaria" data-required="true" required>
                   <option value="">Elegí un horario</option>
-                  <option>Mañana</option>
-                  <option>Tarde</option>
-                  <option>Después del trabajo</option>
-                  <option>Noche</option>
-                  <option>Flexible</option>
+                  <option>Mañana</option><option>Tarde</option><option>Después del trabajo</option>
+                  <option>Noche</option><option>Flexible</option>
                 </select>
               </div>
 
               <div class="field full" data-mode="entidad" hidden>
                 <label for="nombre_entidad">Nombre de la entidad</label>
-                <input id="nombre_entidad" name="nombre_entidad" placeholder="Ej: Club, municipio, asociación..." data-required="true" disabled />
+                <input id="nombre_entidad" name="nombre_entidad" placeholder="Ej: Club, municipio, asociación..." autocomplete="organization" data-required="true" disabled />
               </div>
               <div class="field" data-mode="entidad" hidden>
                 <label for="tipo_entidad">Tipo de entidad</label>
                 <select id="tipo_entidad" name="tipo_entidad" data-required="true" disabled>
-                  <option value="">Elegí una opción</option>
-                  <option>Club</option>
-                  <option>Municipio</option>
-                  <option>Asociación barrial</option>
-                  <option>Universidad</option>
-                  <option>Empresa</option>
-                  <option>Otra</option>
+                  <option value="">Elegí una opción</option><option>Club</option><option>Municipio</option>
+                  <option>Asociación barrial</option><option>Universidad</option><option>Empresa</option><option>Otra</option>
                 </select>
               </div>
               <div class="field" data-mode="entidad" hidden>
@@ -114,160 +112,168 @@
               <div class="field" data-mode="entidad" hidden>
                 <label for="actividad_entidad">Actividad o interés</label>
                 <select id="actividad_entidad" name="actividad" data-required="true" disabled>
-                  <option value="">Elegí una actividad</option>
-                  <option>Yoga</option>
-                  <option>Funcional</option>
-                  <option>Boxeo</option>
-                  <option>Pilates</option>
-                  <option>Gimnasio</option>
-                  <option>Natación</option>
-                  <option>Danza</option>
+                  <option value="">Elegí una actividad</option><option>Yoga</option><option>Funcional</option>
+                  <option>Boxeo</option><option>Pilates</option><option>Gimnasio</option><option>Natación</option><option>Danza</option>
                 </select>
               </div>
               <div class="field" data-mode="entidad" hidden>
                 <label for="cantidad_estimada">Personas estimadas</label>
-                <input id="cantidad_estimada" name="cantidad_estimada" type="number" min="1" value="25" data-required="true" disabled />
+                <input id="cantidad_estimada" name="cantidad_estimada" type="number" min="1" value="25" inputmode="numeric" data-required="true" disabled />
               </div>
               <div class="field full" data-mode="entidad" hidden>
                 <label for="objetivo_entidad">Objetivo</label>
                 <select id="objetivo_entidad" name="objetivo_entidad" data-required="true" disabled>
-                  <option value="">¿Qué querés lograr?</option>
-                  <option>Mejor precio grupal</option>
-                  <option>Crear una nueva actividad</option>
-                  <option>Ampliar beneficios para la comunidad</option>
+                  <option value="">¿Qué querés lograr?</option><option>Mejor precio grupal</option>
+                  <option>Crear una nueva actividad</option><option>Ampliar beneficios para la comunidad</option>
                   <option>Medir interés antes de contratar</option>
                 </select>
               </div>
             </div>
 
-            <button class="submit" id="submit-btn" type="submit">Ver oportunidades →</button>
-            <p class="form-note">Demo con datos ficticios · No requiere registro</p>
+            <button class="submit" id="submit-btn" type="submit">Ver opciones disponibles <span aria-hidden="true">→</span></button>
+            <p class="form-note"><span aria-hidden="true">●</span> Demo con datos ficticios · No requiere registro</p>
           </form>
         </aside>
-      </section>
+      </div>
+    </section>
 
-      <section class="audiences" id="para-quien" aria-label="Para quién es JUNTOS">
-        <article class="audience">
-          <div class="label">Para vos</div>
-          <h3>Encontrá algo que te cierre.</h3>
-          <p>Actividad, zona, horario y presupuesto en una misma búsqueda.</p>
-        </article>
-        <article class="audience">
-          <div class="label">Para tu grupo</div>
-          <h3>Buscar juntos cambia el acceso.</h3>
-          <p>Cuando varias personas quieren algo parecido, aparece poder de negociación.</p>
-        </article>
-        <article class="audience">
-          <div class="label">Para entidades</div>
-          <h3>Convertí interés en una propuesta.</h3>
-          <p>Detectá demanda antes de lanzar una actividad o beneficio para tu comunidad.</p>
-        </article>
-      </section>
-    </div>
+    <section class="signal-strip" aria-label="Variables de búsqueda">
+      <div class="shell signal-list">
+        <span>Actividad</span><i aria-hidden="true"></i><span>Zona</span><i aria-hidden="true"></i>
+        <span>Horario</span><i aria-hidden="true"></i><span>Presupuesto</span><i aria-hidden="true"></i><strong>Demanda compartida</strong>
+      </div>
+    </section>
 
-    <section class="collective" id="idea-juntos">
-      <div class="shell collective-grid">
-        <div>
-          <div class="eyebrow">La idea JUNTOS</div>
-          <h2>No somos otro buscador de gimnasios.</h2>
-          <p>El diferencial está en detectar cuándo muchas personas buscan algo parecido y transformar esa demanda dispersa en una oportunidad colectiva.</p>
+    <section class="proposition" id="propuesta">
+      <div class="shell proposition-grid">
+        <div class="section-intro">
+          <p class="eyebrow"><span></span> La idea JUNTOS</p>
+          <h2>No es otro buscador de gimnasios.</h2>
         </div>
-        <div class="collective-flow" aria-label="Cómo funciona la demanda colectiva">
-          <div class="flow-row"><div class="flow-num">01</div><div><strong>Vos contás qué buscás</strong><span>Actividad, zona, horario y presupuesto.</span></div></div>
-          <div class="flow-row"><div class="flow-num">02</div><div><strong>JUNTOS encuentra coincidencias</strong><span>Agrupamos intereses compatibles para detectar demanda.</span></div></div>
-          <div class="flow-row"><div class="flow-num">03</div><div><strong>La demanda se vuelve visible</strong><span>Eso abre la posibilidad de mejores precios, horarios o propuestas.</span></div></div>
+        <div class="proposition-copy">
+          <p class="statement">La mayoría de las plataformas te muestran lo que ya existe. JUNTOS también detecta <em>lo que podría existir</em> si varias personas buscan algo parecido.</p>
+          <p>Así, una necesidad aislada puede convertirse en un grupo, una propuesta nueva o una mejor condición de acceso.</p>
+        </div>
+      </div>
+
+      <div class="shell demand-board" aria-label="Ejemplo de demanda compartida">
+        <div class="demand-visual">
+          <span class="bubble bubble-a">Yoga</span>
+          <span class="bubble bubble-b">Palermo</span>
+          <span class="bubble bubble-c">Después de las 18</span>
+          <span class="bubble bubble-d">Hasta $50.000</span>
+          <div class="match-core"><small>Coincidencia detectada</small><strong>28 personas</strong><span>Una oportunidad para negociar</span></div>
+        </div>
+        <div class="demand-copy">
+          <div class="number">28</div>
+          <h3>personas buscando algo compatible</h3>
+          <p>La búsqueda deja de ser individual. La demanda se vuelve visible y puede abrir mejores precios, horarios o propuestas cerca de vos.</p>
+          <a class="text-link on-light" href="#buscador">Sumarme a una búsqueda <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
 
-    <div class="shell">
-      <section class="how" id="como-funciona">
-        <div class="section-head">
-          <h2 class="section-title">Cómo funciona</h2>
-          <p class="body-md">Una experiencia simple para el usuario, con una lógica colectiva por detrás.</p>
-        </div>
-        <div class="steps">
-          <article class="step"><div class="step-num">01</div><h3>Buscás</h3><p>Nos contás qué actividad querés y qué condiciones necesitás.</p></article>
-          <article class="step"><div class="step-num">02</div><h3>Detectamos demanda</h3><p>Identificamos personas o comunidades con intereses compatibles.</p></article>
-          <article class="step"><div class="step-num">03</div><h3>Encontramos oportunidades</h3><p>Ordenamos opciones según cercanía, presupuesto y potencial colectivo.</p></article>
-          <article class="step"><div class="step-num">04</div><h3>Elegís</h3><p>Ves alternativas concretas y decidís cuál tiene más sentido para vos.</p></article>
-        </div>
-      </section>
-    </div>
-
-    <section class="story activities" id="actividades">
-      <div class="shell story-grid">
-        <div class="story-copy">
-          <div class="eyebrow">Actividades</div>
-          <h2 class="section-title">No buscás “wellness”. Buscás algo concreto.</h2>
-          <p class="body-lg">Desde una clase de yoga cerca de casa hasta boxeo después del trabajo. JUNTOS parte de necesidades reales, no de categorías abstractas.</p>
-          <div class="chips" aria-label="Ejemplos de actividades">
-            <span class="chip">Yoga</span><span class="chip">Pilates</span><span class="chip">Funcional</span><span class="chip">Boxeo</span><span class="chip">Natación</span><span class="chip">Danza</span>
+    <section class="how" id="como-funciona">
+      <div class="shell">
+        <div class="section-heading-row">
+          <div>
+            <p class="eyebrow"><span></span> Simple para vos</p>
+            <h2>De una búsqueda a una oportunidad.</h2>
           </div>
+          <p>La tecnología trabaja por detrás. Vos solo contás qué necesitás y elegís qué opción tiene más sentido.</p>
         </div>
-        <div class="story-visual"><img src="assets/illustration-activities.png.png" alt="Mujer practicando yoga" /></div>
+
+        <div class="steps">
+          <article class="step">
+            <div class="step-top"><span>01</span><i aria-hidden="true">↗</i></div>
+            <h3>Contás qué buscás</h3>
+            <p>Actividad, zona, horario y presupuesto. Sin catálogos interminables.</p>
+          </article>
+          <article class="step featured-step">
+            <div class="step-top"><span>02</span><i aria-hidden="true">◎</i></div>
+            <h3>Encontramos coincidencias</h3>
+            <p>Agrupamos intereses compatibles y hacemos visible la demanda compartida.</p>
+          </article>
+          <article class="step">
+            <div class="step-top"><span>03</span><i aria-hidden="true">✓</i></div>
+            <h3>Elegís cómo acceder</h3>
+            <p>Comparás opciones concretas: individual, grupal o creada para tu comunidad.</p>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section class="story communities" id="comunidades">
-      <div class="shell story-grid">
-        <div class="story-copy">
-          <div class="eyebrow">Comunidades</div>
-          <h2 class="section-title">Una necesidad individual puede convertirse en una oportunidad colectiva.</h2>
-          <p class="body-lg">Clubes, asociaciones, municipios y grupos pueden detectar qué quiere su gente antes de invertir o negociar una propuesta.</p>
-          <p class="impact-quote">“Si muchas personas buscan lo mismo, ya no es una intención aislada: es demanda.”</p>
+    <section class="audiences" id="para-quien">
+      <div class="shell audiences-grid">
+        <div class="audience-visual">
+          <img src="assets/illustration-activities.png.png" alt="Mujer practicando yoga" loading="lazy" />
+          <div class="visual-caption"><span>01</span> Buscar algo que realmente te cierre.</div>
         </div>
-        <div class="story-visual"><img src="assets/illustration-about.png.png" alt="Personas reunidas en comunidad" /></div>
+        <div class="audience-copy">
+          <p class="eyebrow"><span></span> Para personas</p>
+          <h2>Tu bienestar no debería depender de dónde trabajás.</h2>
+          <p>JUNTOS está pensado para quienes quieren acceder a actividades cerca de casa, con horarios posibles y un presupuesto real.</p>
+          <ul class="check-list">
+            <li>Encontrá opciones compatibles con tu rutina.</li>
+            <li>Descubrí personas con intereses parecidos.</li>
+            <li>Accedé individualmente o sumate a una manada.</li>
+          </ul>
+          <a class="btn btn-outline" href="#buscador">Buscar una actividad</a>
+        </div>
+      </div>
+
+      <div class="shell audiences-grid reverse">
+        <div class="audience-visual community-visual">
+          <img src="assets/illustration-about.png.png" alt="Personas reunidas en comunidad" loading="lazy" />
+          <div class="visual-caption"><span>02</span> Convertir interés en una propuesta.</div>
+        </div>
+        <div class="audience-copy">
+          <p class="eyebrow"><span></span> Para comunidades</p>
+          <h2>Primero entendé la demanda. Después, creá la propuesta.</h2>
+          <p>Clubes, asociaciones, municipios y grupos pueden medir qué quiere su gente antes de invertir, contratar o negociar.</p>
+          <ul class="check-list">
+            <li>Detectá intereses por zona y horario.</li>
+            <li>Validá una actividad antes de lanzarla.</li>
+            <li>Negociá desde una demanda concreta.</li>
+          </ul>
+          <a class="btn btn-outline" href="#buscador">Explorar como entidad</a>
+        </div>
       </div>
     </section>
 
-    <div class="shell">
-      <section class="plans" id="planes">
-        <div class="plans-intro">
-          <div class="eyebrow">Formas de participar</div>
-          <h2 class="section-title">Cuantos más somos, mejor podemos acceder.</h2>
-          <p class="body-md">No son precios cerrados: son tres maneras de participar en la lógica de JUNTOS.</p>
+    <section class="access-models" aria-labelledby="modelos-title">
+      <div class="shell">
+        <div class="models-heading">
+          <p class="eyebrow"><span></span> Tres formas de participar</p>
+          <h2 id="modelos-title">Cuantos más somos, mejor podemos acceder.</h2>
         </div>
-        <div class="plan-grid">
-          <article class="plan">
-            <div><div class="plan-top"><div><h3>Explorador</h3><p>Busco por mi cuenta.</p></div><span class="badge">1 persona</span></div></div>
-            <div class="plan-footer">Encontrá opciones compatibles.</div>
-          </article>
-          <article class="plan featured">
-            <div><div class="plan-top"><div><h3>Manada</h3><p>Nos agrupamos para acceder mejor.</p></div><span class="badge">La idea JUNTOS</span></div></div>
-            <div class="plan-footer">Más demanda, más capacidad de negociar.</div>
-          </article>
-          <article class="plan">
-            <div><div class="plan-top"><div><h3>Comunidad+</h3><p>Organizamos demanda a mayor escala.</p></div><span class="badge">9+ personas</span></div></div>
-            <div class="plan-footer">Ideal para organizaciones y comunidades.</div>
-          </article>
+        <div class="model-grid">
+          <article class="model-card"><span class="model-index">01</span><h3>Explorador</h3><p>Buscás opciones compatibles para vos.</p><small>1 persona</small></article>
+          <article class="model-card model-featured"><div class="model-label">La idea JUNTOS</div><span class="model-index">02</span><h3>Manada</h3><p>Se agrupan búsquedas parecidas para acceder mejor.</p><small>3–8 personas</small></article>
+          <article class="model-card"><span class="model-index">03</span><h3>Comunidad+</h3><p>Una entidad organiza demanda a mayor escala.</p><small>9+ personas</small></article>
         </div>
-      </section>
-    </div>
-
-    <section class="about" id="nosotros">
-      <div class="shell about-grid">
-        <div class="about-copy">
-          <div class="eyebrow">Nosotros</div>
-          <h2 class="section-title">Queremos que acceder al bienestar no dependa solo de dónde trabajás o cuánto podés pagar.</h2>
-          <p class="body-lg">JUNTOS nace para ordenar demanda, conectar personas y ayudar a crear propuestas más accesibles para barrios, grupos y comunidades.</p>
-        </div>
-        <div class="about-visual"><img src="assets/illustration-about.png.png" alt="Comunidad conectada" /></div>
       </div>
     </section>
 
     <section class="final-cta">
+      <div class="final-orbit" aria-hidden="true"></div>
       <div class="shell final-cta-inner">
-        <div>
-          <h2>¿Qué actividad estás buscando?</h2>
-          <p>Probá la demo y mirá cómo JUNTOS transforma una búsqueda en una oportunidad colectiva.</p>
-        </div>
-        <a class="btn primary" href="#buscador">Probar JUNTOS</a>
+        <p class="eyebrow light"><span></span> Empezá por una búsqueda</p>
+        <h2>¿Qué actividad te gustaría hacer si cerrara con tu vida?</h2>
+        <p>Probá la demo. Son cuatro datos y menos de un minuto.</p>
+        <a class="btn btn-cream" href="#buscador">Encontrar opciones <span aria-hidden="true">→</span></a>
       </div>
     </section>
-
-    <div class="shell"><footer>JUNTOS · Wellness para personas y comunidades</footer></div>
   </main>
+
+  <footer>
+    <div class="shell footer-inner">
+      <a class="brand footer-brand" href="#inicio">JUNTOS<span>.</span></a>
+      <p>Bienestar para personas, grupos y comunidades.</p>
+      <span>Demo CoderCup · 2026</span>
+    </div>
+  </footer>
+
   <script src="./app.js" defer></script>
 </body>
 </html>
