@@ -6,9 +6,31 @@ const form = document.getElementById('juntos-form');
 const submitBtn = document.getElementById('submit-btn');
 const personFields = [...document.querySelectorAll('[data-mode="persona"]')];
 const entityFields = [...document.querySelectorAll('[data-mode="entidad"]')];
+const heroShell = document.querySelector('.hero > .shell');
+const heroCollageLeft = document.querySelector('.hero-collage-left');
+
+function preserveLeftCollagePosition(enteringEntityMode) {
+  if (!heroShell || !heroCollageLeft || window.innerWidth <= 760) return;
+
+  if (enteringEntityMode) {
+    const shellRect = heroShell.getBoundingClientRect();
+    const collageRect = heroCollageLeft.getBoundingClientRect();
+    const currentTop = collageRect.top - shellRect.top;
+
+    heroCollageLeft.style.top = `${Math.round(currentTop)}px`;
+    heroCollageLeft.style.bottom = 'auto';
+  } else {
+    heroCollageLeft.style.top = '';
+    heroCollageLeft.style.bottom = '';
+  }
+}
 
 function setMode(mode) {
   const isEntity = mode === 'entidad';
+  const enteringEntityMode = isEntity && !body.classList.contains('entity-mode');
+
+  preserveLeftCollagePosition(enteringEntityMode ? true : !isEntity ? false : true);
+
   body.classList.toggle('entity-mode', isEntity);
   tipoUsuario.value = isEntity ? 'entidad' : 'persona';
   personTab.setAttribute('aria-selected', String(!isEntity));
