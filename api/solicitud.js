@@ -4,13 +4,8 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Método no permitido' });
   }
 
-  const webhookUrl = process.env.N8N_WEBHOOK_URL;
-
-  if (!webhookUrl) {
-    return res.status(500).json({
-      error: 'Falta configurar N8N_WEBHOOK_URL en Vercel.'
-    });
-  }
+  const webhookUrl = process.env.N8N_WEBHOOK_URL ||
+    'https://behalf-openings-practices-concluded.trycloudflare.com/webhook/juntos/solicitud';
 
   try {
     const n8nResponse = await fetch(webhookUrl, {
