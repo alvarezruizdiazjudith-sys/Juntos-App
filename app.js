@@ -4,37 +4,25 @@ const entityTab = document.getElementById('entity-tab');
 const tipoUsuario = document.getElementById('tipo_usuario');
 const form = document.getElementById('juntos-form');
 const submitBtn = document.getElementById('submit-btn');
+const searchTitle = document.getElementById('search-title');
+const modeNote = document.getElementById('mode-note');
+const formStatus = document.getElementById('form-status');
 const personFields = [...document.querySelectorAll('[data-mode="persona"]')];
 const entityFields = [...document.querySelectorAll('[data-mode="entidad"]')];
-const heroShell = document.querySelector('.hero > .shell');
-const heroCollageLeft = document.querySelector('.hero-collage-left');
-
-function preserveLeftCollagePosition(enteringEntityMode) {
-  if (!heroShell || !heroCollageLeft || window.innerWidth <= 760) return;
-
-  if (enteringEntityMode) {
-    const shellRect = heroShell.getBoundingClientRect();
-    const collageRect = heroCollageLeft.getBoundingClientRect();
-    const currentTop = collageRect.top - shellRect.top;
-
-    heroCollageLeft.style.top = `${Math.round(currentTop)}px`;
-    heroCollageLeft.style.bottom = 'auto';
-  } else {
-    heroCollageLeft.style.top = '';
-    heroCollageLeft.style.bottom = '';
-  }
-}
 
 function setMode(mode) {
   const isEntity = mode === 'entidad';
-  const enteringEntityMode = isEntity && !body.classList.contains('entity-mode');
-
-  preserveLeftCollagePosition(enteringEntityMode ? true : !isEntity ? false : true);
-
   body.classList.toggle('entity-mode', isEntity);
   tipoUsuario.value = isEntity ? 'entidad' : 'persona';
-  personTab.setAttribute('aria-selected', String(!isEntity));
-  entityTab.setAttribute('aria-selected', String(isEntity));
+  personTab.setAttribute('aria-pressed', String(!isEntity));
+  entityTab.setAttribute('aria-pressed', String(isEntity));
+  searchTitle.textContent = isEntity ? 'Contanos qué necesita tu comunidad' : 'Contanos qué estás buscando';
+  modeNote.textContent = isEntity
+    ? 'Para clubes, asociaciones civiles, centros culturales y otras organizaciones barriales.'
+    : 'Actividad, zona, horario y presupuesto.';
+  submitBtn.textContent = isEntity ? 'Registrar una necesidad' : 'Sumar mi búsqueda';
+  formStatus.textContent = '';
+  formStatus.removeAttribute('data-state');
 
   personFields.forEach((field) => {
     field.hidden = isEntity;
@@ -68,15 +56,23 @@ function formatBudget(value) {
   return amount ? `Hasta $${amount.toLocaleString('es-AR')}` : 'A definir';
 }
 
+function parseBoolean(value) {
+  if (typeof value === 'boolean') return value;
+  if (typeof value === 'number') return value === 1;
+  if (typeof value === 'string') return ['true', '1', 'sí', 'si', 'yes'].includes(value.trim().toLowerCase());
+  return false;
+}
+
 function normalizeBackendResult(data, backend) {
-  const miembros = Number(
+  const rawMiembros = Number(
     backend.cantidad_miembros ??
     backend.personas_compatibles ??
     backend.cantidad_compatibles ??
     0
   );
+  const miembros = Number.isFinite(rawMiembros) ? Math.max(0, rawMiembros) : 0;
 
-  const grupoFormado = Boolean(
+  const grupoFormado = parseBoolean(
     backend.grupo_formado ??
     backend.demanda_suficiente ??
     false
@@ -128,6 +124,9 @@ form.addEventListener('submit', async (event) => {
   const originalLabel = submitBtn.textContent;
   submitBtn.disabled = true;
   submitBtn.textContent = 'Buscando coincidencias…';
+  form.setAttribute('aria-busy', 'true');
+  formStatus.textContent = 'Estamos cruzando tu búsqueda con otras compatibles…';
+  formStatus.removeAttribute('data-state');
 
   const data = Object.fromEntries(new FormData(form).entries());
   const payload = {
@@ -143,19 +142,19 @@ form.addEventListener('submit', async (event) => {
   };
 
   try {
+    const controller = new AbortController();
+    const timeoutId = window.setTimeout(() => controller.abort(), 15000);
     const response = await fetch('/api/solicitud', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
+      body: JSON.stringify(payload),
+      signal: controller.signal
+    }).finally(() => window.clearTimeout(timeoutId));
 
     const raw = await response.json().catch(() => ({}));
 
     if (!response.ok) {
-      const details = raw.details && typeof raw.details === 'object'
-        ? JSON.stringify(raw.details)
-        : raw.details;
-      throw new Error([raw.error || raw.message || 'No pudimos procesar tu búsqueda.', details].filter(Boolean).join(' '));
+      throw new Error(raw.error || raw.message || 'No pudimos procesar tu búsqueda.');
     }
 
     const backend = getResponseData(raw);
@@ -167,6 +166,10 @@ form.addEventListener('submit', async (event) => {
     console.error('Error enviando la solicitud a JUNTOS:', error);
     submitBtn.disabled = false;
     submitBtn.textContent = originalLabel;
-    window.alert(`No pudimos conectar con JUNTOS. ${error.message || 'Probá nuevamente en unos segundos.'}`);
+    form.removeAttribute('aria-busy');
+    formStatus.dataset.state = 'error';
+    formStatus.textContent = error.name === 'AbortError'
+      ? 'La búsqueda está tardando más de lo esperado. Probá nuevamente.'
+      : `No pudimos conectar con JUNTOS. ${error.message || 'Probá nuevamente en unos segundos.'}`;
   }
 });
