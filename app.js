@@ -1,4 +1,5 @@
 const body = document.body;
+const root = document.documentElement;
 const personTab = document.getElementById('person-tab');
 const entityTab = document.getElementById('entity-tab');
 const tipoUsuario = document.getElementById('tipo_usuario');
@@ -10,7 +11,20 @@ const formStatus = document.getElementById('form-status');
 const personFields = [...document.querySelectorAll('[data-mode="persona"]')];
 const entityFields = [...document.querySelectorAll('[data-mode="entidad"]')];
 
-function setMode(mode) {
+function preserveViewport(scrollX, scrollY) {
+  root.classList.add('is-switching-mode');
+  window.requestAnimationFrame(() => {
+    window.scrollTo(scrollX, scrollY);
+    window.requestAnimationFrame(() => {
+      window.scrollTo(scrollX, scrollY);
+      root.classList.remove('is-switching-mode');
+    });
+  });
+}
+
+function setMode(mode, preserveScroll = true) {
+  const scrollX = window.scrollX;
+  const scrollY = window.scrollY;
   const isEntity = mode === 'entidad';
   body.classList.toggle('entity-mode', isEntity);
   tipoUsuario.value = isEntity ? 'entidad' : 'persona';
@@ -39,11 +53,13 @@ function setMode(mode) {
       if (input.dataset.required === 'true') input.required = isEntity;
     });
   });
+
+  if (preserveScroll) preserveViewport(scrollX, scrollY);
 }
 
 personTab.addEventListener('click', () => setMode('persona'));
 entityTab.addEventListener('click', () => setMode('entidad'));
-setMode('persona');
+setMode('persona', false);
 
 function getResponseData(raw) {
   if (Array.isArray(raw)) return raw[0] || {};
