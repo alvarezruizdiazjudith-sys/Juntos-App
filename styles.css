@@ -20,6 +20,7 @@
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
+html.is-switching-mode{scroll-behavior:auto}
 body{margin:0;background:var(--cream);color:var(--body);font-family:var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 img{display:block;max-width:100%;height:auto}
 a{color:inherit}
