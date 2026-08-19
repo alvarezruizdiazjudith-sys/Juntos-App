@@ -7,21 +7,6 @@ const submitBtn = document.getElementById('submit-btn');
 const personFields = [...document.querySelectorAll('[data-mode="persona"]')];
 const entityFields = [...document.querySelectorAll('[data-mode="entidad"]')];
 
-const demoPlaces = [
-  { nombre:'Casa Yoga Sur', actividad:'Yoga', zona:'Palermo', horario:'Mañana', precio:30000, tipo:'Yoga y movilidad' },
-  { nombre:'Ritmo Club', actividad:'Danza', zona:'Palermo', horario:'Noche', precio:50000, tipo:'Danza y movimiento' },
-  { nombre:'Fit Sur Club', actividad:'Funcional', zona:'Belgrano', horario:'Después del trabajo', precio:50000, tipo:'Funcional + entrenamiento' },
-  { nombre:'Espacio Movimiento', actividad:'Pilates', zona:'Belgrano', horario:'Tarde', precio:70000, tipo:'Pilates y movilidad' },
-  { nombre:'Club de la Comunidad', actividad:'Gimnasio', zona:'Adrogué', horario:'Flexible', precio:30000, tipo:'Gimnasio + actividades barriales' },
-  { nombre:'Centro Activo', actividad:'Boxeo', zona:'Adrogué', horario:'Noche', precio:50000, tipo:'Boxeo recreativo' },
-  { nombre:'Aqua Barrio', actividad:'Natación', zona:'Caballito', horario:'Mañana', precio:70000, tipo:'Natación y bienestar' },
-  { nombre:'Movimiento 360', actividad:'Funcional', zona:'Caballito', horario:'Tarde', precio:50000, tipo:'Funcional y fuerza' },
-  { nombre:'Pausa Studio', actividad:'Yoga', zona:'Villa Crespo', horario:'Tarde', precio:50000, tipo:'Yoga y respiración' },
-  { nombre:'Norte Pilates', actividad:'Pilates', zona:'Vicente López', horario:'Mañana', precio:70000, tipo:'Pilates reformer' },
-  { nombre:'Comunidad Activa', actividad:'Gimnasio', zona:'Quilmes', horario:'Después del trabajo', precio:50000, tipo:'Entrenamiento y comunidad' },
-  { nombre:'Fuerza Sur', actividad:'Boxeo', zona:'Quilmes', horario:'Noche', precio:50000, tipo:'Boxeo y acondicionamiento' }
-];
-
 function setMode(mode) {
   const isEntity = mode === 'entidad';
   body.classList.toggle('entity-mode', isEntity);
@@ -50,65 +35,88 @@ personTab.addEventListener('click', () => setMode('persona'));
 entityTab.addEventListener('click', () => setMode('entidad'));
 setMode('persona');
 
-function normalize(value) {
-  return String(value || '').trim().toLowerCase();
+function getResponseData(raw) {
+  if (Array.isArray(raw)) return raw[0] || {};
+  if (raw && typeof raw === 'object' && raw.data && typeof raw.data === 'object') return raw.data;
+  return raw && typeof raw === 'object' ? raw : {};
 }
 
-function scorePlace(place, data) {
-  let score = 0;
-  if (normalize(place.actividad) === normalize(data.actividad)) score += 5;
-  if (normalize(place.zona).includes(normalize(data.zona)) || normalize(data.zona).includes(normalize(place.zona))) score += 4;
-  if (normalize(place.horario) === normalize(data.franja_horaria)) score += 2;
-  const budget = Number(data.presupuesto_max || 0);
-  if (!budget || place.precio <= budget) score += 2;
-  return score;
-}
+function normalizeBackendResult(data, backend) {
+  const miembros = Number(
+    backend.cantidad_miembros ??
+    backend.personas_compatibles ??
+    backend.cantidad_compatibles ??
+    0
+  );
 
-function buildResults(data) {
-  const ranked = demoPlaces
-    .map((place) => ({ ...place, score: scorePlace(place, data) }))
-    .sort((a, b) => b.score - a.score || a.precio - b.precio)
-    .slice(0, 3);
+  const grupoFormado = Boolean(
+    backend.grupo_formado ??
+    backend.demanda_suficiente ??
+    false
+  );
 
-  const demandBase = data.tipo_usuario === 'entidad'
-    ? Math.max(18, Number(data.cantidad_estimada || 25))
-    : 18 + Math.min(18, (normalize(data.zona).length + normalize(data.actividad).length));
-
-  return ranked.map((place, index) => ({
-    nombre: place.nombre,
-    tipo: place.tipo,
-    zona: place.zona,
-    horario: place.horario,
-    precio_estimado: `$${place.precio.toLocaleString('es-AR')}`,
-    demanda: demandBase + (index * 4),
-    estado: index === 0 ? 'Mejor coincidencia' : index === 1 ? 'Hay una manada posible' : 'Interés en formación'
-  }));
+  return {
+    actividad: data.actividad || 'Bienestar',
+    zona: data.zona || 'Tu zona',
+    tipo_usuario: data.tipo_usuario || 'persona',
+    personas_compatibles: miembros,
+    demanda_suficiente: grupoFormado,
+    mensaje_usuario: backend.mensaje || backend.mensaje_usuario ||
+      (grupoFormado
+        ? 'Encontramos una coincidencia con suficiente demanda para empezar a organizarse.'
+        : 'Registramos tu búsqueda. Cuando aparezcan más coincidencias en tu zona, la demanda va a empezar a hacerse visible.'),
+    solicitud_id: backend.solicitud_id || null,
+    grupo_id: backend.grupo_id || null,
+    grupo_formado: grupoFormado,
+    nivel_demanda: backend.nivel_demanda || null,
+    estado_grupo: backend.estado_grupo || (grupoFormado ? 'Grupo formado' : 'En formación'),
+    backend_ok: backend.ok !== false
+  };
 }
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
   if (!form.reportValidity()) return;
 
+  const originalLabel = submitBtn.textContent;
   submitBtn.disabled = true;
-  submitBtn.textContent = 'Buscando oportunidades…';
+  submitBtn.textContent = 'Buscando coincidencias…';
 
   const data = Object.fromEntries(new FormData(form).entries());
-  const resultados = buildResults(data);
-  const personasCompatibles = resultados.reduce((max, item) => Math.max(max, Number(item.demanda) || 0), 0);
-
   const payload = {
-    actividad: data.actividad || 'Bienestar',
-    zona: data.zona || 'Tu zona',
-    personas_compatibles: personasCompatibles,
-    demanda_suficiente: personasCompatibles >= 25,
-    mensaje_usuario: data.tipo_usuario === 'entidad'
-      ? 'Encontramos búsquedas que pueden ayudarte a pensar una propuesta para tu organización barrial.'
-      : 'Tu búsqueda coincide con otras de la zona y con estas opciones.',
-    resultados
+    actividad: data.actividad || '',
+    zona: data.zona || '',
+    presupuesto_max: data.presupuesto_max ? Number(data.presupuesto_max) : 0,
+    franja_horaria: data.franja_horaria || '',
+    tipo_usuario: data.tipo_usuario || 'persona',
+    nombre_entidad: data.nombre_entidad || '',
+    tipo_entidad: data.tipo_entidad || '',
+    cantidad_estimada: data.cantidad_estimada ? Number(data.cantidad_estimada) : null,
+    objetivo_entidad: data.objetivo_entidad || ''
   };
 
-  sessionStorage.setItem('juntos_resultado', JSON.stringify(payload));
+  try {
+    const response = await fetch('/api/solicitud', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
 
-  await new Promise((resolve) => setTimeout(resolve, 700));
-  window.location.href = `./resultados.html?actividad=${encodeURIComponent(payload.actividad)}&zona=${encodeURIComponent(payload.zona)}`;
+    const raw = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      throw new Error(raw.error || raw.message || 'No pudimos procesar tu búsqueda.');
+    }
+
+    const backend = getResponseData(raw);
+    const result = normalizeBackendResult(data, backend);
+    sessionStorage.setItem('juntos_resultado', JSON.stringify(result));
+
+    window.location.href = `./resultados.html?actividad=${encodeURIComponent(result.actividad)}&zona=${encodeURIComponent(result.zona)}`;
+  } catch (error) {
+    console.error('Error enviando la solicitud a JUNTOS:', error);
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalLabel;
+    window.alert('No pudimos conectar con JUNTOS en este momento. Probá nuevamente en unos segundos.');
+  }
 });
