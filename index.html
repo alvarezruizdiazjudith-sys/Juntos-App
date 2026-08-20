@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <a class="skip-link" href="#contenido-principal">Saltar al contenido</a>
 
   <main id="contenido">
     <section class="hero" id="inicio">
@@ -26,28 +26,29 @@
             <a href="#como-funciona">Cómo funciona</a>
             <a href="#para-quien">Para quién es</a>
             <a href="#planes">Cómo participar</a>
-            <a href="#nosotros">Nosotros</a>
+            <a href="#nosotros">Por qué JUNTOS</a>
           </nav>
-          <a class="header-cta" href="#buscador">Probar demo</a>
+          <a class="header-cta" href="#buscador">Sumá tu búsqueda</a>
         </header>
 
-        <div class="hero-copy">
+        <div class="hero-copy" id="contenido-principal" tabindex="-1">
           <p class="eyebrow eyebrow-warm">Cuando buscamos lo mismo, accedemos mejor</p>
           <h1>Accedé a mejores<br> actividades, <em>juntos.</em></h1>
           <p class="hero-lead">Tu búsqueda no queda aislada. JUNTOS la cruza con otras búsquedas de tu zona para encontrar coincidencias y mostrarte opciones compatibles.</p>
         </div>
 
-        <img class="hero-collage hero-collage-left" src="./assets/collage/hero-manada.png" alt="Grupo de personas reunidas y acompañándose" />
-        <img class="hero-collage hero-collage-right" src="./assets/collage/hero-exploradora.png" alt="Persona practicando una actividad de bienestar" />
+        <img class="hero-collage hero-collage-left" src="./assets/collage/hero-manada.png" width="420" height="300" fetchpriority="high" alt="Grupo de personas reunidas y acompañándose" />
+        <img class="hero-collage hero-collage-right" src="./assets/collage/hero-exploradora.png" width="455" height="380" fetchpriority="high" alt="Persona practicando una actividad de bienestar" />
 
-        <aside class="search-card" id="buscador" aria-label="Buscador de oportunidades">
-          <form id="juntos-form">
-            <h2>Encontrá tu mejor opción</h2>
+        <aside class="search-card" id="buscador" aria-labelledby="search-title">
+          <form id="juntos-form" aria-describedby="mode-note">
+            <h2 id="search-title">Contanos qué estás buscando</h2>
 
-            <div class="switch" role="tablist" aria-label="Tipo de usuario">
-              <button type="button" role="tab" id="person-tab" aria-selected="true">Soy un explorador</button>
-              <button type="button" role="tab" id="entity-tab" aria-selected="false">Soy una entidad</button>
+            <div class="switch" role="group" aria-label="Tipo de usuario">
+              <button type="button" id="person-tab" aria-pressed="true">Soy un explorador</button>
+              <button type="button" id="entity-tab" aria-pressed="false">Soy una entidad</button>
             </div>
+            <p class="mode-note" id="mode-note">Actividad, zona, horario y presupuesto.</p>
             <input type="hidden" name="tipo_usuario" id="tipo_usuario" value="persona" />
 
             <div class="form-grid">
@@ -80,11 +81,11 @@
               </div>
 
               <div class="field full" data-mode="entidad" hidden>
-                <label for="nombre_entidad">Nombre de la entidad</label>
+                <label for="nombre_entidad">Nombre de la organización</label>
                 <input id="nombre_entidad" name="nombre_entidad" placeholder="Ej: Club, asociación, centro cultural..." autocomplete="organization" data-required="true" disabled />
               </div>
               <div class="field" data-mode="entidad" hidden>
-                <label for="tipo_entidad">Tipo de entidad</label>
+                <label for="tipo_entidad">Tipo de organización</label>
                 <select id="tipo_entidad" name="tipo_entidad" data-required="true" disabled>
                   <option value="">Elegí una opción</option><option>Club de barrio</option><option>Asociación civil</option>
                   <option>Centro cultural</option><option>Cooperativa</option><option>Biblioteca popular</option><option>Otra organización barrial</option>
@@ -103,7 +104,7 @@
               </div>
               <div class="field" data-mode="entidad" hidden>
                 <label for="cantidad_estimada">Personas estimadas</label>
-                <input id="cantidad_estimada" name="cantidad_estimada" type="number" min="1" value="25" inputmode="numeric" data-required="true" disabled />
+                <input id="cantidad_estimada" name="cantidad_estimada" type="number" min="1" placeholder="Ej. 25" inputmode="numeric" data-required="true" disabled />
               </div>
               <div class="field full" data-mode="entidad" hidden>
                 <label for="objetivo_entidad">Objetivo</label>
@@ -115,7 +116,8 @@
               </div>
             </div>
 
-            <button class="submit" id="submit-btn" type="submit">Ver opciones disponibles</button>
+            <button class="submit" id="submit-btn" type="submit">Sumar mi búsqueda</button>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
           </form>
         </aside>
       </div>
@@ -137,11 +139,11 @@
         <p class="eyebrow">Para quién es</p>
         <h2>Una búsqueda empieza en vos<br> y toma fuerza cuando encuentra a <em>otros.</em></h2>
         <p class="section-lead">JUNTOS no parte de un catálogo. Parte de lo que hace falta en cada barrio.</p>
-        <div class="audience-collage" aria-hidden="true"><img src="./assets/collage/para-quien.png" alt="" /></div>
+        <div class="audience-collage" aria-hidden="true"><img src="./assets/collage/para-quien.png" width="1450" height="265" loading="lazy" decoding="async" alt="" /></div>
         <div class="audience-grid">
-          <article><p class="card-label">Para vos</p><img class="audience-mobile-image" src="./assets/collage/para-vos-mobile.png" alt="Persona preparándose para realizar una actividad" /><h3>Que la actividad se adapte a tu vida.</h3><p>Marcá la zona, el horario y el presupuesto que de verdad podés sostener.</p></article>
-          <article><p class="card-label">Para tu manada</p><img class="audience-mobile-image" src="./assets/collage/para-manada-mobile.png" alt="Personas que descubren un interés compartido" /><h3>Eso que buscás quizás ya lo buscan otros.</h3><p>Cuando las condiciones coinciden, tu búsqueda deja de estar sola y aparece una manada posible.</p></article>
-          <article><p class="card-label">Para organizaciones barriales</p><img class="audience-mobile-image" src="./assets/collage/para-comunidad-mobile.png" alt="Personas reunidas alrededor de una propuesta comunitaria" /><h3>Escuchá al barrio antes de armar la propuesta.</h3><p>Clubes, asociaciones civiles, centros culturales y redes vecinales pueden conocer qué actividad hace falta, dónde y para cuántas personas.</p></article>
+          <article><p class="card-label">Para vos</p><img class="audience-mobile-image" src="./assets/collage/para-vos-mobile.png" width="420" height="275" loading="lazy" decoding="async" alt="Persona preparándose para realizar una actividad" /><h3>Que la actividad se adapte a tu vida.</h3><p>Marcá la zona, el horario y el presupuesto que de verdad podés sostener.</p></article>
+          <article><p class="card-label">Para tu manada</p><img class="audience-mobile-image" src="./assets/collage/para-manada-mobile.png" width="500" height="275" loading="lazy" decoding="async" alt="Personas que descubren un interés compartido" /><h3>Eso que buscás quizás ya lo buscan otros.</h3><p>Cuando las condiciones coinciden, tu búsqueda deja de estar sola y aparece una manada posible.</p></article>
+          <article><p class="card-label">Para organizaciones barriales</p><img class="audience-mobile-image" src="./assets/collage/para-comunidad-mobile.png" width="520" height="275" loading="lazy" decoding="async" alt="Personas reunidas alrededor de una propuesta comunitaria" /><h3>Escuchá al barrio antes de armar la propuesta.</h3><p>Clubes, asociaciones civiles, centros culturales y redes vecinales pueden conocer qué actividad hace falta, dónde y para cuántas personas.</p></article>
         </div>
       </div>
     </section>
@@ -156,22 +158,22 @@
             <span class="participation-number">01</span>
             <div class="participation-name"><h3>Explorador</h3><p>Buscás una actividad para vos.</p></div>
             <p class="participation-copy">Poné en palabras eso que hoy no encontrás: qué querés hacer y qué condiciones necesitás.</p>
-            <img src="./assets/collage/participar-explorador.png" alt="Persona explorando actividades disponibles" />
+            <img src="./assets/collage/participar-explorador.png" width="300" height="220" loading="lazy" decoding="async" alt="Persona explorando actividades disponibles" />
           </article>
           <article class="participation-row">
             <span class="participation-number">02</span>
             <div class="participation-name"><h3>Manada</h3><p>Lo que coincide deja de estar suelto.</p></div>
             <p class="participation-copy">Varias búsquedas parecidas ya dicen algo: hay una necesidad compartida.</p>
-            <img src="./assets/collage/participar-manada.png" alt="Tres personas organizando una actividad en conjunto" />
+            <img src="./assets/collage/participar-manada.png" width="340" height="155" loading="lazy" decoding="async" alt="Tres personas organizando una actividad en conjunto" />
           </article>
           <article class="participation-row">
             <span class="participation-number">03</span>
             <div class="participation-name"><h3>Comunidad+</h3><p>El barrio pone en común lo que necesita.</p></div>
             <p class="participation-copy">Organizaciones barriales y referentes comunitarios pueden saber qué se busca antes de poner recursos en marcha.</p>
-            <img src="./assets/collage/participar-comunidad.png" alt="Comunidad reunida alrededor de una propuesta" />
+            <img src="./assets/collage/participar-comunidad.png" width="380" height="160" loading="lazy" decoding="async" alt="Comunidad reunida alrededor de una propuesta" />
           </article>
         </div>
-        <div class="participation-action"><a class="button" href="#buscador">Probar JUNTOS</a></div>
+        <div class="participation-action"><a class="button" href="#buscador">Sumá tu búsqueda</a></div>
       </div>
     </section>
 
@@ -186,7 +188,7 @@
           </div>
           <figure class="about-collage">
             <figcaption><span>Necesidades dispersas</span><span>Coincidencias visibles</span></figcaption>
-            <img src="./assets/collage/nosotros.png" alt="Personas con búsquedas separadas que luego se reúnen alrededor de una propuesta" />
+            <img src="./assets/collage/nosotros.png" width="820" height="420" loading="lazy" decoding="async" alt="Personas con búsquedas separadas que luego se reúnen alrededor de una propuesta" />
           </figure>
         </div>
         <div class="principles">
